@@ -1,0 +1,25 @@
+{
+    "port": 8000,
+    "host": "localhost",
+    "db": {
+        "name": "chat"
+    },
+    "twitter": {
+        "consumerKey": "",
+        "consumerSecret": ""
+    },
+    "facebook": {
+        "appId": "",
+        "appSecret": ""
+    },
+    "session": {
+        "secret": "",
+        "key": ""
+    }, 
+    "cookie": {
+        "secret": ""
+    },
+    "secure": false,
+    "key": "",
+    "cert": ""
+}
