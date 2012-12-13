@@ -12,20 +12,25 @@ if(cluster.isMaster) {
 		console.log('worker ' + worker.process.pid + ' died');
 	});
 } else {
+	// aplication
+	var app = require('./app')(config),
+		sessionStore = app.sessionStore;
+
+	app = app.app;
+
 	/*
 	* Server configuration
 	*/
 	var server = config.secure ? require('https').createServer({key: fs.readFileSync(config.key).toString(),
-	      cert: fs.readFileSync(config.cert).toString()}) : require('http').createServer();
+	      cert: fs.readFileSync(config.cert).toString()}, app) : require('http').createServer(app);
 
-	var app = require('./app')(server);
-
-	server.on('request', app);
+	// io
+	require('./io')(config, server, sessionStore);
 
 	/*
 	* Bootstrap
 	*/
 	server.listen(config.port, function(){
-		console.log("Mejorando.la Chat server listening on port " + app.get('port'));
+		console.log("Mejorando.la Chat server listening on port ");
 	});	
 }

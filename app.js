@@ -4,11 +4,7 @@
  */
 
 var express = require('express'),
-    cookie = require('cookie'),
-    parseCookie = require('connect').utils.parseSignedCookie,
     request = require('request'),
-    // configurations
-    config = require('./config'),
     // database
     mongoose = require('mongoose'),
     // authentication
@@ -22,7 +18,7 @@ var express = require('express'),
 require('express-mongoose');
 require('datejs');
 
-module.exports = function (server) {
+module.exports = function (config) {
   /**
    * Database configuration
    */
@@ -107,59 +103,10 @@ module.exports = function (server) {
     app.use(express.errorHandler());
   });
 
-
-  /*
-   * Socket.io configuration
-   */
-  var io = require('socket.io').listen(server),
-    pub = redis.createClient(),
-    sub = redis.createClient(),
-    client = redis.createClient();
-
-  io.set('store', new RedisStore({
-    redisPub: pub,
-    redisSub: sub,
-    redisClient: client
-  }));
-
-  io.configure('production', function () {
-    io.set('log level', 1);
-
-    io.enable('browser client minification'); // send minified client
-    io.enable('browser client etag');         // apply etag caching logic based on version number
-    io.enable('browser client gzip');       // gzip the file
-
-    io.set('transports', ['websocket', 'flashsocket', 'htmlfile', 'xhr-polling', 'jsonp-polling']);
-  });
-
-  io.configure('development', function () {
-    io.set('transports', ['websocket']);
-  });
-
-  io.set('authorization', function (data, accept) {
-    if(data.headers.cookie) {
-      data.cookie = cookie.parse(data.headers.cookie);
-      data.sessionID = parseCookie(data.cookie[config.session.key], config.session.secret);
-
-      sessionStore.get(data.sessionID,
-        function (err, session) {
-          if(err) return accept(err, false);
-
-          data.session = session;
-
-          accept(null, true);
-      });
-    } else {
-      return accept(null, true);
-    }
-  });
-
-  require('./controllers/io')(io);
-
   /*
    * Routes
    */
   require('./routes')(app, passport);
 
-  return app;
+  return { app: app, sessionStore: sessionStore };
 };
