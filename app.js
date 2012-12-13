@@ -26,8 +26,8 @@ require('datejs');
 mongoose.connect('mongodb://localhost/' + config.db.name );
 
 // modelos
-require('./models/User');
-require('./models/Message');
+require('./models/user');
+require('./models/message');
 
 /**
  * Auth configuration
