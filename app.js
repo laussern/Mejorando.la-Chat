@@ -4,10 +4,10 @@
  */
 
 var express = require('express'),
-    http = require('http'),
-    path = require('path'),
     cookie = require('cookie'),
+    fs = require('fs'),
     parseCookie = require('connect').utils.parseSignedCookie,
+    request = require('request'),
     // configurations
     config = require('./config'),
     // database
@@ -34,6 +34,7 @@ require('./models/Message');
  */
 var auth = require('./auth'),
   sche = config.secure ? 'https' : 'http';
+
 passport.use(new TwitterStrategy({
     consumerKey: config.twitter.consumerKey,
     consumerSecret: config.twitter.consumerSecret,
@@ -66,7 +67,10 @@ app.configure(function(){
   app.set('port', config.port);
   app.set('views', __dirname + '/views');
   app.set('view engine', 'jade');
-  app.use(express.favicon('public/images/favicon.ico'));
+
+  app.use(express.static(__dirname + '/public'));
+  app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
+
   app.use(express.logger('dev'));
   app.use(express.methodOverride());
   app.use(express.cookieParser(config.cookie.secret));
@@ -75,8 +79,26 @@ app.configure(function(){
   app.use(passport.initialize());
   app.use(passport.session());
 
+  app.use(function (req, res, next) {
+    if(req.user && !req.user.ip) {
+      request({ url: 'https://mejorando.la/locateme', headers: { 'X-Real-IP': req.ip } },
+        function (err, response, body) {
+          if(err) return next();
+
+
+          req.user.ip = req.ip;
+          req.user.pais = body;
+
+          req.user.save();
+
+          next();
+      });
+    } else {
+      next();
+    }
+  });
+
   app.use(app.router);
-  app.use(express.static(path.join(__dirname, 'public')));
 });
 
 app.configure('development', function(){
@@ -86,7 +108,8 @@ app.configure('development', function(){
 /*
  * Server configuration
  */
-var server = http.createServer(app);
+var server = config.secure ? require('https').createServer({key: fs.readFileSync(settings.key).toString(),
+        cert: fs.readFileSync(settings.cert).toString()}, app) : require('http').createServer(app);
 
 /*
  * Socket.io configuration

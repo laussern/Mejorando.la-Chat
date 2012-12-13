@@ -17,6 +17,7 @@
     "passport-facebook": "0.1.4",
     "passport-twitter": "0.1.4",
     "socket.io": "0.9.11",
-    "express-mongoose": "0.1.0 "
+    "express-mongoose": "0.1.0 ",
+    "request": "2.12.0"
   }
 }
