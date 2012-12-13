@@ -80,8 +80,10 @@ jQuery(function ($) {
 
         var actions = '', clase = '';
         if(typeof user != 'undefined') {
-            if(user.username != message.username) {
+            if(user.username != message.user.username) {
                 actions += '<a href="#" target="_blank" class="responder"></a>';
+            } else {
+                clase += ' sameuser';
             }
 
             if(user.upgraded) {
@@ -91,7 +93,11 @@ jQuery(function ($) {
             if(message.user.staff) {
                 clase += ' destacado';
             }
+
+            message.content = message.content
+                    .replace('@'+user.username, '<span class="mention">@'+user.username+'</span>');
         }
+
 
         var fecha = new Date(message.datetime);
 
@@ -121,6 +127,18 @@ jQuery(function ($) {
         socket.emit('delete message', $self.attr('data-borrar'));
         
         $message.remove();
+
+        return false;
+    });
+
+    $('a.responder').live('click', function () {
+        var $self = $(this);
+
+        var mention = $self.closest('.message').find('.user').text();
+
+        if(mention && mention !== '') {
+            $text.val('@'+mention+' ').focus();
+        }
 
         return false;
     });

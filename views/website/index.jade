@@ -22,7 +22,7 @@ block content
 
         .messages#messages
             each message in messages
-                div(class="message#{ message.user.admin ? ' destacado' : ''}", id="message-#{message._id}")
+                div(class="message#{ message.user.admin ? ' destacado' : ''}#{ user && user.username == message.user.username ? ' sameuser' : ''}", id="message-#{message._id}")
                     .avatar: a(href=message.user.link, target="_blank")
                         img(src=message.user.avatar, alt=message.user.username, width=30, height=30)
 
