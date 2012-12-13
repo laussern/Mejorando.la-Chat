@@ -10,13 +10,10 @@ var express = require('express'),
     // authentication
     passport = require('passport'),
     TwitterStrategy = require('passport-twitter').Strategy,
-    FacebookStrategy = require('passport-facebook').Strategy
-    // Redis
-    RedisStore = require('socket.io/lib/stores/redis'),
-    redis = require('socket.io/node_modules/redis');
+    FacebookStrategy = require('passport-facebook').Strategy;
 
 require('express-mongoose');
-require('datejs');
+require('datejs/lib/date-es-ES');
 
 module.exports = function (config) {
   /**

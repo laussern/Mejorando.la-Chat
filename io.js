@@ -1,8 +1,11 @@
 var cookie = require('cookie'),
-    parseCookie = require('connect').utils.parseSignedCookie;
+    parseCookie = require('connect').utils.parseSignedCookie,
+    // Redis
+    RedisStore = require('socket.io/lib/stores/redis'),
+    redis = require('socket.io/node_modules/redis');
 
 module.exports = function (config, server, sessionStore) {
-	 /*
+  /*
    * Socket.io configuration
    */
   var io = require('socket.io').listen(server),
