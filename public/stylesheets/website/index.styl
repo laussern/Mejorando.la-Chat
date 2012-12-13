@@ -90,9 +90,19 @@ a
               border-left 7px solid #29afff
 
             &.destacado
-              background-image url(/images/website/destacado.gif)
-              background-repeat no-repeat
-              background-position right bottom 
+              .avatar
+                &:after
+                  content " "
+                  background url(/images/website/staff.png)
+                  width 14px
+                  height 14px
+                  display block
+                  absolute bottom 1px right 1px
+
+                img
+                  border-color white
+
+
 
             p
               font-size 13px
@@ -101,9 +111,11 @@ a
 
             .avatar
               float left
+              position relative
               margin 0 10px
 
               img 
+                display block
                 border 1px solid rgba(255, 255, 255, 0.2)
 
 

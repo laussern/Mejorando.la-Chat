@@ -100,10 +100,18 @@ a:hover {
   background: #2e3032;
   border-left: 7px solid #29afff;
 }
-.chat .messages .message.destacado {
-  background-image: url("/images/website/destacado.gif");
-  background-repeat: no-repeat;
-  background-position: right bottom;
+.chat .messages .message.destacado .avatar:after {
+  content: " ";
+  background: url("/images/website/staff.png");
+  width: 14px;
+  height: 14px;
+  display: block;
+  position: absolute;
+  bottom: 1px;
+  right: 1px;
+}
+.chat .messages .message.destacado .avatar img {
+  border-color: #fff;
 }
 .chat .messages .message p {
   font-size: 13px;
@@ -112,9 +120,11 @@ a:hover {
 }
 .chat .messages .message .avatar {
   float: left;
+  position: relative;
   margin: 0 10px;
 }
 .chat .messages .message .avatar img {
+  display: block;
   border: 1px solid rgba(255,255,255,0.2);
 }
 .chat .messages .message .user {
