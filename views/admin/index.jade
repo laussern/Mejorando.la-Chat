@@ -1,0 +1,42 @@
+extends layout-admin
+
+block body
+    #main
+        h4 Mensajes
+
+        p Todos: 
+            strong #{ mensajes.total }
+            , Desactivados: 
+            strong #{ mensajes.desactivados }
+            , Tweets: 
+            strong #{ mensajes.publicados }
+
+        h4 Usuarios
+
+        p Todos: 
+            strong #{ usuarios.total }
+            , Bloqueados: 
+            strong #{ usuarios.bloqueados }
+            , Facebook: 
+            strong #{ usuarios.facebook }
+            , Twitter: 
+            strong #{ usuarios.twitter }
+
+
+        table
+            thead: tr
+                th Nombre
+                th País
+                th Red
+                th # Mensajes
+                th IP
+
+            tbody
+                each usuario in usuarios.all
+                    tr
+                        td #{ usuario.username }
+                        td #{ usuario.pais }
+                        td #{ usuarios.red }
+                        td #{ usuario.mensajes }
+                        td #{ usuario.ip }
+

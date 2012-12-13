@@ -55,7 +55,7 @@ footer .derecha a {
   margin: 0 130px;
 }
 footer .izquierda {
-  background: #3d4043 url("../images/esquina-adorno-footer.jpg") no-repeat right top;
+  background: #3d4043 url("/images/website/esquina-adorno-footer.jpg") no-repeat right top;
   color: #fff;
   text-align: right;
   width: 350px;
@@ -97,7 +97,7 @@ header #cristalab {
   width: 160px;
 }
 header div {
-  background: url("../images/adorno-logo.png") no-repeat 750px top;
+  background: url("/images/website/adorno-logo.png") no-repeat 750px top;
   border-top: 7px solid #fff;
   display: block;
   margin: 0 auto;
@@ -255,7 +255,7 @@ footer {
   position: relative;
 }
 #cursos .pais .tec {
-  background: url("../images/fondo-logo-tec.png");
+  background: url("/images/website/fondo-logo-tec.png");
   height: 66px;
   position: absolute;
   right: 0;
@@ -434,7 +434,7 @@ footer {
   width: 800px;
 }
 .cinta {
-  background: url("../images/cinta.jpg");
+  background: url("/images/website/cinta.jpg");
   background-size: 100%;
   width: 100%;
   height: 32px;
@@ -589,7 +589,7 @@ body{
   left:0;
   right:-3px;
   bottom:0;
-  background:rgba(61, 64, 67, 0.6) url(../images/form-sending.gif) center center no-repeat;
+  background:rgba(61, 64, 67, 0.6) url(/images/website/form-sending.gif) center center no-repeat;
   z-index:9;
 }
 
@@ -608,7 +608,7 @@ body{
   width: 100%;
 }
 .chat .chatbox #chatform .publish {
-  background: #29b1ff url(../images/submit-esquina.png) top left no-repeat;
+  background: #29b1ff url(/images/website/submit-esquina.png) top left no-repeat;
   color: #fff;
   position: absolute;
   right: 0;
@@ -703,7 +703,7 @@ body{
 
 
 .chat #messages .message .retweet {
-  background: url("../images/reply.png") no-repeat left;
+  background: url("/images/website/reply.png") no-repeat left;
   color: #BBB;
   font-size:13px;
   padding-left: 30px;
@@ -719,8 +719,8 @@ body{
   -ms-transition:opacity .5s;
   transition:opacity .5s;
 }
-.chat #messages .message .ZXNhZG1pbg {
-  background: url("../images/borrar.png") no-repeat;
+.chat #messages .message .borrar {
+  background: url("/images/website/borrar.png") no-repeat;
   height: 14px;
   position: absolute;
   right: 10px;
@@ -728,12 +728,12 @@ body{
   width: 14px;
 }
 
-.chat #messages .message .ZXNhZG1pbg.ready {
+.chat #messages .message .borrar.ready {
   background-color:red;
 }
 
 .chat #messages .message .responder {
-  background: rgba(0,0,0,.7) url("../images/respon-icn.png") no-repeat center;
+  background: rgba(0,0,0,.7) url("/images/website/respon-icn.png") no-repeat center;
   height: 10px;
   height: 32px;
   left: 10px;
@@ -748,7 +748,7 @@ body{
   z-index:5;
 }
 .chat #messages .message .responder:hover{
-  background: rgba(0,0,0,.7) url("../images/respon-icn.png") no-repeat center;
+  background: rgba(0,0,0,.7) url("/images/website/respon-icn.png") no-repeat center;
   opacity: 1;
   -moz-opacity: 1;
   filter:alpha(opacity=1);
@@ -773,7 +773,7 @@ body{
   height:19px;
   top:4px;
   position: relative;
-  background:url(../images/emoticons.png) left top no-repeat;
+  background:url(/images/website/emoticons.png) left top no-repeat;
 }
 
 .emoticon[title=":)"] {
@@ -820,8 +820,7 @@ body{
 
 
 
-.logout {
-  color:#bbb;
+.bottom-links{
   text-align:center;
   display: block;
   font-size:11px;
@@ -831,7 +830,13 @@ body{
   bottom:0;
 }
 
-.logout:hover {
+.bottom-links a {
+  color:#bbb;
+  display: inline-block;
+  margin:0 5px;
+}
+
+.bottom-links a:hover {
   color:white;
 }
 
@@ -846,19 +851,19 @@ body{
 }
 
 #messages .anuncio.twitter {
-  background:#01a8f7 url(../images/twitter_bg.gif) left center no-repeat;
+  background:#01a8f7 url(/images/website/twitter_bg.gif) left center no-repeat;
 }
 
 #messages .anuncio.facebook {
-  background:#3d5f9f url(../images/facebook_bg.gif) left center no-repeat;
+  background:#3d5f9f url(/images/website/facebook_bg.gif) left center no-repeat;
 }
 
 #messages .anuncio.youtube {
-  background:#d83c3d url(../images/youtube_bg.gif) left center no-repeat;
+  background:#d83c3d url(/images/website/youtube_bg.gif) left center no-repeat;
 }
 
 #messages .anuncio.curso {
-  background:#88bb42 url(../images/cursos_bg.gif) left center no-repeat;
+  background:#88bb42 url(/images/website/cursos_bg.gif) left center no-repeat;
 }
 
 #messages .anuncio h3 {
@@ -871,7 +876,7 @@ body{
 }
 
 .message.destacado {
-  background-image:url(../images/destacado.gif);
+  background-image:url(/images/website/destacado.gif);
   background-position: right bottom;
   background-repeat: no-repeat;
 }
@@ -952,7 +957,7 @@ body{
 
 .panel a.facebook {
   margin-right:10px;
-  background-image:url(../images/fb.png);
+  background-image:url(/images/website/fb.png);
 }
 
 .panel a.facebook:hover {
@@ -962,7 +967,7 @@ body{
 .panel a.twitter {
   background-color:#00aee8;
   border-color:#49c9ff;
-  background-image:url(../images/tt.png);
+  background-image:url(/images/website/tt.png);
 }
 
 .panel a.twitter:hover {

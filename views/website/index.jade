@@ -1,0 +1,61 @@
+extends layout
+
+block content
+    .chat
+        .chatbox: form#chatform
+            input(type="text", placeholder="Participa en el chat", maxlength="128")
+
+            if user
+                p.publish
+                    case user.red
+                        when 'twitter'
+                            span Publicar a twitter
+                        when 'facebook'
+                            span Publicar a facebook
+                        default
+                            span Publicar 
+
+                    if user.admin
+                        input(type="checkbox")#publish
+                    else
+                        input(type="checkbox", checked)#publish
+
+        .messages#messages
+            each message in messages
+                div(class="message#{ message.user.admin ? ' destacado' : ''}", id="message-#{message._id}")
+                    .avatar: a(href=message.user.link, target="_blank")
+                        img(src=message.user.avatar, alt=message.user.username, width=30, height=30)
+
+                    a(href=message.user.link, target="_blank").user= message.user.username
+
+                    p= message.content
+
+                    .time: small= message.datetime.toString('MMMM d, HH:mm')
+
+                    .actions
+                        if user 
+                            if user.username != message.user.username
+                                a(href="#", target="_blank").responder
+                                
+                            if user.admin
+                                a(href="#", target="_blank", data-borrar=message.id).borrar
+    if user
+        .bottom-links
+            if user.admin
+                a(href="/admin") Admin        
+            a(href="/salir") Salir
+    else
+        #login
+            .overlay.animated
+            .panel.animated
+                p Para participar necesitas identificarte
+
+                a(href="/auth/facebook").facebook Conectate con
+                a(href="/auth/twitter").twitter Conectate con
+
+    if user
+        script
+            window.user = {
+                username: "#{ user.username }",
+                upgraded: #{ user.admin }
+            };

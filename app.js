@@ -17,101 +17,40 @@ var express = require('express'),
     TwitterStrategy = require('passport-twitter').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy;
 
-
+require('express-mongoose');
 require('datejs');
 
 /**
  * Database configuration
  */
-var db = mongoose.createConnection('mongodb://localhost/' + config.db.name );
+mongoose.connect('mongodb://localhost/' + config.db.name );
 
-var userSchema = new mongoose.Schema({
-  username: { type: String, unique: true },
-  avatar: String,
-  link: String,
-  red: String,
-  redId: String,
-  token: String,
-  tokenSecret: String
-});
+// modelos
+require('./models/User');
+require('./models/Message');
 
-var User = db.model('User', userSchema);
-
-var messageSchema = new mongoose.Schema({
-  content: String,
-  datetime: { type: Date, default: Date.now },
-  publish: { default: false, type: Boolean },
-  ip: String,
-  user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
-});
-
-var Message = db.model('Message', messageSchema);
-
-var sche = config.secure ? 'https' : 'http';
 /**
  * Auth configuration
  */
+var auth = require('./auth'),
+  sche = config.secure ? 'https' : 'http';
 passport.use(new TwitterStrategy({
     consumerKey: config.twitter.consumerKey,
     consumerSecret: config.twitter.consumerSecret,
     callbackURL: sche+"://"+config.host+":"+config.port+"/auth/twitter/callback"
-  },
-  function(token, tokenSecret, profile, done) {
-    User.findOne({ redId: profile._json.id_str }, function (err, user) {
-      if(err) return done(err);
-
-      if(!user) {
-        user = new User({
-          username: profile.username,
-          avatar: profile._json.profile_image_url_https,
-          link: 'http://twitter.com/' + profile.username,
-          red: 'twitter',
-          redId: profile._json.id_str,
-          token: token,
-          tokenSecret: tokenSecret
-        });
-        user.save(done);
-      } else {
-        done(null, user);
-      }
-    });
-  }
-));
+  }, auth.twitter));
 
 passport.use(new FacebookStrategy({
     clientID: config.facebook.appId,
     clientSecret: config.facebook.appSecret,
     callbackURL: sche+"://"+config.host+":"+config.port+"/auth/facebook/callback"
-  },
-  function(accessToken, refreshToken, profile, done) {
-    User.findOne({ redId: profile.id }, function (err, user) {
-      if(err) return done(err);
-
-      if(!user) {
-        user = new User({
-          username: profile.username,
-          avatar: 'https://graph.facebook.com/'+profile.username+'/picture',
-          link: profile.profileUrl,
-          red: 'facebook',
-          redId: profile.id,
-          token: accessToken,
-          tokenSecret: refreshToken
-        });
-        user.save(done);
-      } else {
-        done(null, user);
-      }
-    });
-  }
-));
+  }, auth.facebook));
 
 passport.serializeUser(function(user, done) {
-  done(null, user._id);
+  done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done) {
-  User.findById(id, done);
-});
+passport.deserializeUser(auth.user);
 
 /*
  * Session configurations
@@ -186,70 +125,12 @@ io.set('authorization', function (data, accept) {
   }
 });
 
-io.sockets.on('connection', function (socket) {
-  var hs = socket.handshake;
-  socket.on('send message', function (message) {
-    if(hs.session && hs.session.passport.user) {
-        var user_id = hs.session.passport.user;
-
-        User.findById(user_id, function (err, user) {
-          if(err) return err;
-
-          message = new Message({
-            content: message.content,
-            publish: message.publish,
-            user: user
-          });
-
-          message.save(function (err, message) {
-
-            if(err) return err;
-
-            var msg = {
-              content: message.content,
-              datetime: message.datetime,
-              user: {
-                username: user.username,
-                avatar: user.avatar,
-                link: user.link
-              }
-            };
-
-            socket.emit('message sent', msg);
-            socket.broadcast.emit('send message', msg);
-          });
-        });
-    }
-  });
-});
+require('./controllers/io')(io);
 
 /*
  * Routes
  */
-app.get('/', function (req, res, next) {
-  Message.find(null, null, { sort: { datetime: -1 }, limit: 25 })
-    .populate('user')
-    .exec(function (err, messages) {
-      if(err) return next(err);
-      
-      res.render('index', { user: req.user, messages: messages });
-  });
-});
-
-app.get('/salir', function (req, res) {
-  req.logout();
-  res.redirect('/');
-});
-
-app.get('/auth/twitter', passport.authenticate('twitter'));
-app.get('/auth/twitter/callback',
-  passport.authenticate('twitter', { successRedirect: '/',
-                                     failureRedirect: '/' }));
-
-app.get('/auth/facebook', passport.authenticate('facebook'));
-app.get('/auth/facebook/callback',
-  passport.authenticate('facebook', { successRedirect: '/',
-                                     failureRedirect: '/' }));
+require('./routes')(app, passport);
 
 /*
  * Bootstrap
