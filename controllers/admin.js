@@ -28,7 +28,7 @@ exports.update = function (req, res, next) {
 
       if(id && activado && admin) {
         activado = activado == 'true';
-        admin = activado == 'true';
+        admin = admin == 'true';
 
         User.update({ _id: id}, { $set: { activado: activado, admin: admin }}).exec();
       }
