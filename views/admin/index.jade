@@ -35,10 +35,11 @@ block body
 
             tbody
                 each usuario in usuarios_all
-                    tr
+                    tr(data-id=usuario.id).user
                         td #{ usuario.username }
                         td #{ usuario.pais }
                         td #{ usuario.red }
                         td #{ usuario.ip }
-                        td #{ usuario.admin }
-                        td #{ usuario.activado }
+                        td: input(type="checkbox", checked=usuario.admin).admin
+                        td: input(type="checkbox", checked=usuario.activado).activado
+                        td: input(type="submit", value="Guardar").guardar

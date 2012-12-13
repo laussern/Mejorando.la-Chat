@@ -13,7 +13,7 @@ module.exports = function (app, passport) {
    * Admin urls
    */
   app.get('/admin', admin.index);
-
+  app.post('/admin/update', admin.update);
   /*
    * Passport urls
    */

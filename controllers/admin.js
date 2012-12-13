@@ -19,3 +19,22 @@ exports.index = function (req, res, next) {
     res.redirect('/');
   }
 };
+
+exports.update = function (req, res, next) {
+  if(req.user && req.user.admin) {
+    var id = req.param('id', null),
+      activado = req.param('activado', null),
+      admin = req.param('admin', null);
+
+      if(id && activado && admin) {
+        activado = activado == 'true';
+        admin = activado == 'true';
+
+        User.update({ _id: id}, { $set: { activado: activado, admin: admin }}).exec();
+      }
+
+      res.send('OK');
+  } else {
+    res.redirect('/');
+  }
+}

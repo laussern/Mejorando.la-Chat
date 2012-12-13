@@ -71,6 +71,7 @@ module.exports = function (config) {
     app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
 
     app.use(express.logger('dev'));
+    app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.cookieParser(config.cookie.secret));
     app.use(express.session({secret: config.session.secret, key: config.session.key, store: sessionStore }));
