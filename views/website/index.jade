@@ -2,7 +2,7 @@ extends layout
 
 block content
     .chat
-        .chatbox: form#chatform
+        .chatbox: form.chatform#chatform
             input(type="text", placeholder="Participa en el chat", maxlength="128")
 
             if user
@@ -40,7 +40,7 @@ block content
                             if user.admin
                                 a(href="#", target="_blank", data-borrar=message.id).borrar
     if user
-        .bottom-links
+        footer
             if user.admin
                 a(href="/admin", target="_blank") Admin        
             a(href="/salir") Salir
