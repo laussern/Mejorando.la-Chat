@@ -45,6 +45,7 @@ jQuery(function ($) {
             socket.once('message sent', function (message) {
                 $chatform.removeClass('sending');
                 $text.val('');
+                $text.focus();
 
                 render(message);
             });
