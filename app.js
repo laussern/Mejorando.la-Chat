@@ -108,8 +108,8 @@ app.configure('development', function(){
 /*
  * Server configuration
  */
-var server = config.secure ? require('https').createServer({key: fs.readFileSync(settings.key).toString(),
-        cert: fs.readFileSync(settings.cert).toString()}, app) : require('http').createServer(app);
+var server = config.secure ? require('https').createServer({key: fs.readFileSync(config.key).toString(),
+        cert: fs.readFileSync(config.cert).toString()}, app) : require('http').createServer(app);
 
 /*
  * Socket.io configuration
