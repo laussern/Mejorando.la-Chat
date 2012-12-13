@@ -81,10 +81,9 @@ app.configure(function(){
 
   app.use(function (req, res, next) {
     if(req.user && !req.user.ip) {
-      request({ url: 'https://mejorando.la/locateme', headers: { 'X-Real-IP': req.ip } },
+      request({ url: 'https://mejorando.la/locateme?ip='+req.ip },
         function (err, response, body) {
           if(err) return next();
-
 
           req.user.ip = req.ip;
           req.user.pais = body;
