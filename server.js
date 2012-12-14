@@ -1,5 +1,3 @@
-require('nodetime').profile();
-
 var fs = require('fs'),
 	cluster = require('cluster'),
 	config = require('./config');
