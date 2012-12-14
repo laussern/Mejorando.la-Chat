@@ -67,7 +67,7 @@ module.exports = function (config) {
     app.use(express.static(__dirname + '/public'));
     app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
 
-    app.use(express.logger('dev'));
+    app.use(express.logger('tiny'));
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.cookieParser(config.cookie.secret));
@@ -95,9 +95,12 @@ module.exports = function (config) {
     });
 
     app.use(app.router);
+
+    app.use(require('raven').middleware.express(config.sentry_dsn));
   });
 
   app.configure('development', function(){
+    app.use(express.logger('dev'));
     app.use(express.errorHandler());
   });
 
