@@ -117,6 +117,7 @@ a:hover {
   font-size: 13px;
   line-height: 15px;
   margin: 0 5px;
+  margin-left: 51px;
 }
 .chat .messages .message .avatar {
   float: left;
