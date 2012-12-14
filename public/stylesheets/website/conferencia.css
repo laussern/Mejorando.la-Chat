@@ -13,7 +13,7 @@ a {
 }
 .chat .chatbox .chatform.sending:after {
   background-color: rgba(247,247,245,0.6);
-  background-image: url("/images/conferencia/conferencia-sending.gif");
+  background-image: url("/images/conferencia/form-sending.gif");
 }
 .chat .chatbox .chatform .publish {
   background-color: #f5e00d;
