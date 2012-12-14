@@ -17,9 +17,7 @@ google.setOnLoadCallback(function () {
 
     var data = google.visualization
         .arrayToDataTable([['País', 'Usuarios']]
-            .concat($.map(JSON.parse($geo.attr('data-geo')),
-                function (value, key) {
-                    return [$.map(value, function (value, key) { return value; })]; })));
+            .concat(_.map(JSON.parse($geo.attr('data-geo')), function (obj) { return _.values(obj); })));
 
     var options = {
         colorAxis: {
