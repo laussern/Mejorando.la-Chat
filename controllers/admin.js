@@ -4,17 +4,26 @@ var mongoose = require('mongoose'),
 
 exports.index = function (req, res, next) {
   if(req.user && req.user.admin) {
-    res.render('admin/index', {
-      mensajes_total: Message.count(),
-      mensajes_desactivados: Message.count({ activados: false }),
-      mensajes_publicados: Message.count({ publish: true }),
+    User.aggregate(
+      { $match: {pais: { $ne: null}} },
+      { $group: { _id: "$pais", count: { $sum: 1}  }},
+      function (err, data) {
+          if(err) next(err);
 
-      usuarios_total: User.count(),
-      usuarios_bloqueados: User.count({ activado: false }),
-      usuarios_facebook: User.count({ red: 'facebook '}),
-      usuarios_twitter: User.count({ red: 'twitter' }),
-      usuarios_all: User.find()
+          res.render('admin/index', {
+            mensajes_total: Message.count(),
+            mensajes_desactivados: Message.count({ activado: false }),
+            mensajes_publicados: Message.count({ publish: true }),
+
+            usuarios_total: User.count(),
+            usuarios_bloqueados: User.count({ activado: false }),
+            usuarios_facebook: User.count({ red: 'facebook'}),
+            usuarios_twitter: User.count({ red: 'twitter' }),
+            usuarios_all: User.find(),
+            usuarios_geo: data
+          });
     });
+
   } else {
     res.redirect('/');
   }
