@@ -39,6 +39,9 @@ a {
   background-color: #ececec;
   border-color: #f5e00d;
 }
+.chat .messages .message.destacado .avatar:after {
+  background-image: url("/images/conferencia/staff.png");
+}
 .chat .messages .message.destacado .avatar img {
   border-color: #555452;
 }
