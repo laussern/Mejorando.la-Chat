@@ -42,7 +42,7 @@ module.exports = function (config, server, sessionStore) {
   });
 
   io.configure('production', function () {
-    io.set('log level', 1);
+    io.set('log level', 0);
 
     io.enable('browser client minification'); // send minified client
     io.enable('browser client etag');         // apply etag caching logic based on version number
