@@ -14,3 +14,7 @@ exports.salir = function (req, res) {
     req.logout();
     res.redirect('/');
 };
+
+exports.notFound = function (req, res) {
+    res.status(404).render('website/404.jade');
+};
