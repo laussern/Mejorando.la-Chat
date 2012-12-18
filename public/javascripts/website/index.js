@@ -27,8 +27,8 @@ jQuery(function ($) {
 
             setTimeout(function () {
                 $login.removeClass('show');
-                $overlay.removeClass('fadeOut').removeClass('fadeIn');
-                $panel.removeClass('bounceOutUp').removeClass('bounceInDown');
+                $overlay.removeClass('fadeOut fadeIn');
+                $panel.removeClass('bounceOutUp bounceInDown');
             }, 1010);
         });
     }
@@ -106,7 +106,7 @@ jQuery(function ($) {
         $messages.prepend($message);
     }
 
-    $('a.borrar').live('click', function () {
+    $messages.on('click', '.borrar',  function () {
         var $self = $(this);
 
         $self.addClass('ready');
@@ -121,7 +121,7 @@ jQuery(function ($) {
         return false;
     });
 
-    $('a.borrar.ready').live('click', function () {
+    $messages.on('click', '.borrar.ready', function () {
         var $self = $(this),
             $message = $self.closest('.message');
 
@@ -132,12 +132,12 @@ jQuery(function ($) {
         return false;
     });
 
-    $('a.responder').live('click', function () {
+    $messages.on('click', '.responder',  function () {
         var $self = $(this);
 
         var mention = $self.closest('.message').find('.user').text();
 
-        if(mention && mention !== '') {
+        if(mention) {
             $text.val('@'+mention+' ').focus();
         }
 

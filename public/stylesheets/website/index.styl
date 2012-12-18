@@ -1,14 +1,15 @@
 @import "../nib"
 
-* 
-    margin 0
-    padding 0
+global-reset()
 
 body
     background #3D4043
     overflow hidden
 
-body, input, textarea, button
+body
+input
+textarea
+button
     font-family 'Open Sans'
     font-size 16px
     color white
@@ -22,7 +23,6 @@ a
 
     &:hover
         text-decoration underline
-
 
 ::selection
     background-color #29b1ff
@@ -44,7 +44,7 @@ a
                 z-index 9
 
 
-            input[type="text"]
+            .chatfield
                 background #515458
                 border 1px solid rgba(255,255,255, 0.30)
                 font-size 15px
@@ -104,7 +104,7 @@ a
 
 
 
-            p
+            .content
               font-size 13px
               line-height 15px
               margin 0 5px

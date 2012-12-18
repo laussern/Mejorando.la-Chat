@@ -3,7 +3,7 @@ extends layout
 block content
     .chat
         .chatbox: form.chatform#chatform
-            input(type="text", placeholder="Participa en el chat", maxlength="128")
+            input(type="text", placeholder="Participa en el chat", maxlength="128").chatfield
 
             if user
                 p.publish
@@ -28,7 +28,7 @@ block content
 
                     a(href=message.user.link, target="_blank").user= message.user.username
 
-                    p= message.content
+                    p.content= message.content
 
                     .time: small= message.datetime.toString('MMMM d, HH:mm')
 
