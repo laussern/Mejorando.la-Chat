@@ -102,7 +102,7 @@ jQuery(function ($) {
 
         var fecha = new Date(message.datetime);
 
-        var $message = $('<div class="message'+clase+'" id="'+id+'"><div class="avatar"><a href="'+message.user.link+'" target="_blank"><img src="'+message.user.avatar+'" alt="'+message.user.username+'" width="30" height="30" /></a></div><a href="'+message.user.link+'" target="_blank" class="user">'+message.user.username+'</a><p>'+message.content+'</p><div class="time"><small title="'+fecha.toISOString()+'">'+fecha.toString('MMMM d, HH:mm')+'</small></div><div class="actions">'+actions+'</div></div>');
+        var $message = $('<div class="message'+clase+'" id="'+id+'"><div class="avatar"><a href="'+message.user.link+'" target="_blank"><img src="'+message.user.avatar+'" alt="'+message.user.username+'" width="30" height="30" /></a></div><a href="'+message.user.link+'" target="_blank" class="user">'+message.user.username+'</a><p class="content">'+message.content+'</p><div class="time"><small title="'+fecha.toISOString()+'">'+fecha.toString('MMMM d, HH:mm')+'</small></div><div class="actions">'+actions+'</div></div>');
         $messages.prepend($message);
     }
 
