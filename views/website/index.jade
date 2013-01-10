@@ -26,7 +26,7 @@ block content
                     .avatar: a(href=message.user.link, target="_blank")
                         img(src=message.user.avatar, alt=message.user.username, width=30, height=30)
 
-                    a(href=message.user.link, target="_blank").user= message.user.username
+                    a(href=message.user.link, target="_blank", title="Ir al perfil del usuario").user= message.user.username
 
                     p.content= message.content
 
