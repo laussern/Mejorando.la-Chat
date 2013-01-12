@@ -200,6 +200,14 @@ a:hover {
 .chat .messages .message.destacado .avatar img {
   border-color: #fff;
 }
+.chat .messages .message .mention {
+  background: #29b1ff;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  display: inline-block;
+  margin-top: 5px;
+  padding: 2px;
+}
 .chat .messages .message .content {
   font-size: 13px;
   line-height: 15px;
