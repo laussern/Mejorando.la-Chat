@@ -4,6 +4,8 @@ jQuery(function ($) {
         $text     = $chatform.find('input[type="text"]'),
         $publish  = $chatform.find('input[type="checkbox"]'),
         $messages = $('#messages'),
+        $mentions = $('#mentions'),
+        $chat     = $('.chat'),
         // auth elements
         $login   = $('#login'),
         $overlay = $login.find('.overlay'),
@@ -82,13 +84,13 @@ jQuery(function ($) {
         var actions = '', clase = '';
         if(typeof user != 'undefined') {
             if(user.username != message.user.username) {
-                actions += '<a href="#" target="_blank" class="responder"></a>';
+                actions += '<a href="#" target="_blank" class="responder icon-undo"></a>';
             } else {
                 clase += ' sameuser';
             }
 
             if(user.upgraded) {
-                actions += '<a href="#" target="_blank" class="borrar" data-borrar="'+message.id+'"></a>';
+                actions += '<a href="#" target="_blank" class="borrar icon-blocked" data-borrar="'+message.id+'"></a>';
             }
 
             if(message.user.staff) {
@@ -99,11 +101,18 @@ jQuery(function ($) {
                     .replace('@'+user.username, '<span class="mention">@'+user.username+'</span>');
         }
 
-
         var fecha = new Date(message.datetime);
 
         var $message = $('<div class="message'+clase+'" id="'+id+'"><div class="avatar"><a href="'+message.user.link+'" target="_blank"><img src="'+message.user.avatar+'" alt="'+message.user.username+'" width="30" height="30" /></a></div><a href="'+message.user.link+'" target="_blank" class="user">'+message.user.username+'</a><p class="content">'+message.content+'</p><div class="time"><small title="'+fecha.toISOString()+'">'+fecha.toString('MMMM d, HH:mm')+'</small></div><div class="actions">'+actions+'</div></div>');
         $messages.prepend($message);
+
+        // si tiene una mencion
+        if($message.find('.mention').size() > 0) {
+            $message = $('<div class="mention'+clase+'"><div class="avatar"><a href="'+message.user.link+'" target="_blank"><img src="'+message.user.avatar+'" alt="'+message.user.username+'" width="30" height="30" /></a></div><a href="'+message.user.link+'" target="_blank" class="user">'+message.user.username+'</a><p class="content">'+message.content+'</p><div class="time"><small title="'+fecha.toISOString()+'">'+fecha.toString('MMMM d, HH:mm')+'</small></div></div>');
+            $mentions.prepend($message);
+        
+            if(canSound) mentionSnd.play();
+        }
     }
 
     $messages.on('click', '.borrar',  function () {
@@ -143,4 +152,36 @@ jQuery(function ($) {
 
         return false;
     });
+
+    var $footer = $('footer');
+    $footer.on('click', '#mention-btn', function () {
+        var $self = $(this);
+
+        if($self.hasClass('icon-mention')) {
+            $chat.addClass('alternate');
+            $self.removeClass('icon-mention').addClass('icon-bubble');
+        } else {
+            $chat.removeClass('alternate');
+            $self.addClass('icon-mention').removeClass('icon-bubble');
+        }
+
+        return false;
+    });
+
+    var canSound = true;
+    $footer.on('click', '#sound-btn', function () {
+        var $self = $(this);
+
+        if($self.hasClass('icon-volume-high')) {
+            $self.removeClass('icon-volume-high').addClass('icon-volume-mute');
+            canSound = false;
+        } else {
+            $self.addClass('icon-volume-high').removeClass('icon-volume-mute');
+            canSound = true;
+        }
+
+        return false;
+    });
+
+    var mentionSnd = new Audio('sound/mention.wav');
 });

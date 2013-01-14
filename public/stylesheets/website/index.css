@@ -161,17 +161,30 @@ a:hover {
 .chat .chatbox .chatform .publish span {
   margin-right: 5px;
 }
-.chat .messages {
+.chat.alternate .messages {
+  display: none;
+}
+.chat.alternate .mentions {
+  display: block;
+}
+.chat .mentions {
+  display: none;
+}
+.chat .messages,
+.chat .mentions {
   position: absolute;
   overflow-y: scroll;
   -webkit-overflow-scrolling: touch;
   top: 100px;
-  bottom: 20px;
+  bottom: 24px;
   position: absolute;
   right: 0;
   left: 0;
 }
-.chat .messages .message {
+.chat .messages .message,
+.chat .mentions .message,
+.chat .messages .mention,
+.chat .mentions .mention {
   padding: 10px 0;
   position: relative;
   overflow: hidden;
@@ -183,11 +196,17 @@ a:hover {
   -ms-transition: background-color 0.5s ease-out;
   transition: background-color 0.5s ease-out;
 }
-.chat .messages .message.sameuser {
+.chat .messages .message.sameuser,
+.chat .mentions .message.sameuser,
+.chat .messages .mention.sameuser,
+.chat .mentions .mention.sameuser {
   background: #2e3032;
   border-left: 7px solid #29afff;
 }
-.chat .messages .message.destacado .avatar:after {
+.chat .messages .message.destacado .avatar:after,
+.chat .mentions .message.destacado .avatar:after,
+.chat .messages .mention.destacado .avatar:after,
+.chat .mentions .mention.destacado .avatar:after {
   content: " ";
   background: url("/images/website/staff.png");
   width: 14px;
@@ -197,10 +216,16 @@ a:hover {
   bottom: 1px;
   right: 1px;
 }
-.chat .messages .message.destacado .avatar img {
+.chat .messages .message.destacado .avatar img,
+.chat .mentions .message.destacado .avatar img,
+.chat .messages .mention.destacado .avatar img,
+.chat .mentions .mention.destacado .avatar img {
   border-color: #fff;
 }
-.chat .messages .message .mention {
+.chat .messages .message .mention,
+.chat .mentions .message .mention,
+.chat .messages .mention .mention,
+.chat .mentions .mention .mention {
   background: #29b1ff;
   -webkit-border-radius: 3px;
   border-radius: 3px;
@@ -208,25 +233,40 @@ a:hover {
   margin-top: 5px;
   padding: 2px;
 }
-.chat .messages .message .content {
+.chat .messages .message .content,
+.chat .mentions .message .content,
+.chat .messages .mention .content,
+.chat .mentions .mention .content {
   font-size: 13px;
   line-height: 15px;
   margin: 0 5px;
   margin-left: 51px;
 }
-.chat .messages .message .avatar {
+.chat .messages .message .avatar,
+.chat .mentions .message .avatar,
+.chat .messages .mention .avatar,
+.chat .mentions .mention .avatar {
   float: left;
   position: relative;
   margin: 0 10px;
 }
-.chat .messages .message .avatar img {
+.chat .messages .message .avatar img,
+.chat .mentions .message .avatar img,
+.chat .messages .mention .avatar img,
+.chat .mentions .mention .avatar img {
   display: block;
   border: 1px solid rgba(255,255,255,0.2);
 }
-.chat .messages .message .user {
+.chat .messages .message .user,
+.chat .mentions .message .user,
+.chat .messages .mention .user,
+.chat .mentions .mention .user {
   font-weight: bold;
 }
-.chat .messages .message .time {
+.chat .messages .message .time,
+.chat .mentions .message .time,
+.chat .messages .mention .time,
+.chat .mentions .mention .time {
   position: absolute;
   right: 25px;
   top: 0;
@@ -240,25 +280,45 @@ a:hover {
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   filter: alpha(opacity=0);
 }
-.chat .messages .message .time small {
+.chat .messages .message .time small,
+.chat .mentions .message .time small,
+.chat .messages .mention .time small,
+.chat .mentions .mention .time small {
   font-size: 12px;
 }
-.chat .messages .message .borrar {
-  background: url("/images/website/borrar.png") no-repeat;
+.chat .messages .message .borrar,
+.chat .mentions .message .borrar,
+.chat .messages .mention .borrar,
+.chat .mentions .mention .borrar {
   position: absolute;
   top: 5px;
   right: 5px;
-  height: 14px;
-  width: 14px;
+  font-size: 15px;
+  color: #bbb;
 }
-.chat .messages .message .borrar.ready {
+.chat .messages .message .borrar:hover,
+.chat .mentions .message .borrar:hover,
+.chat .messages .mention .borrar:hover,
+.chat .mentions .mention .borrar:hover {
+  text-decoration: none;
+  color: #fff;
+}
+.chat .messages .message .borrar.ready,
+.chat .mentions .message .borrar.ready,
+.chat .messages .mention .borrar.ready,
+.chat .mentions .mention .borrar.ready {
   background-color: #f00;
+  color: #fff;
 }
-.chat .messages .message .responder {
-  position: absolute;
-  background: rgba(0,0,0,0.7) url("/images/website/respon-icn.png") no-repeat center;
+.chat .messages .message .icon-undo,
+.chat .mentions .message .icon-undo,
+.chat .messages .mention .icon-undo,
+.chat .mentions .mention .icon-undo {
+  background: rgba(0,0,0,0.7);
+  text-align: center;
   width: 32px;
   height: 32px;
+  line-height: 32px;
   position: absolute;
   left: 10px;
   top: 10px;
@@ -271,12 +331,24 @@ a:hover {
   -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
   filter: alpha(opacity=0);
 }
-.chat .messages .message .responder:hover {
+.chat .messages .message .icon-undo:hover,
+.chat .mentions .message .icon-undo:hover,
+.chat .messages .mention .icon-undo:hover,
+.chat .mentions .mention .icon-undo:hover {
+  text-decoration: none;
+}
+.chat .messages .message .icon-undo:hover,
+.chat .mentions .message .icon-undo:hover,
+.chat .messages .mention .icon-undo:hover,
+.chat .mentions .mention .icon-undo:hover {
   opacity: 1;
   -ms-filter: none;
   filter: none;
 }
-.chat .messages .message:hover .time {
+.chat .messages .message:hover .time,
+.chat .mentions .message:hover .time,
+.chat .messages .mention:hover .time,
+.chat .mentions .mention:hover .time {
   opacity: 1;
   -ms-filter: none;
   filter: none;
@@ -365,9 +437,10 @@ a:hover {
 /* FOOTER */
 footer {
   text-align: center;
-  font-size: 11px;
+  font-size: 16px;
   text-transform: uppercase;
   position: absolute;
+  padding: 2px 0;
   bottom: 0;
   left: 0;
   right: 0;
@@ -375,6 +448,13 @@ footer {
 footer a {
   color: #bbb;
   margin: 0 5px;
+}
+footer a.icon-mention {
+  font-size: 19px;
+}
+footer a:hover {
+  text-decoration: none;
+  color: #fff;
 }
 @media screen and (max-width:458px) {
   #login .panel {
@@ -715,6 +795,71 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   -o-animation-name: bounceOutUp;
   -ms-animation-name: bounceOutUp;
   animation-name: bounceOutUp;
+}
+@font-face {
+  font-family: 'icomoon';
+  src: url("../../fonts/icomoon.eot");
+  src: url("../../fonts/icomoon.eot?#iefix") format('embedded-opentype'), url("../../fonts/icomoon.svg#icomoon") format('svg'), url("../../fonts/icomoon.woff") format('woff'), url("../../fonts/icomoon.ttf") format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+  font-family: 'icomoon';
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"]:before {
+*/
+.icon-volume-high:before,
+.icon-volume-mute:before,
+.icon-blocked:before,
+.icon-undo:before,
+.icon-bubble:before,
+.icon-award-fill:before,
+.icon-exit:before,
+.icon-stop:before,
+.icon-mention:before {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-mention:before {
+  content: "@";
+}
+.icon-volume-high:before {
+  content: "\21";
+}
+.icon-volume-mute:before {
+  content: "\22";
+}
+.icon-blocked:before {
+  content: "\23";
+}
+.icon-undo:before {
+  content: "\24";
+}
+.icon-bubble:before {
+  content: "\25";
+}
+.icon-award-fill:before {
+  content: "\26";
+}
+.icon-exit:before {
+  content: "\27";
+}
+.icon-stop:before {
+  content: "\28";
 }
 @-moz-keyframes fadeIn {
   0% {

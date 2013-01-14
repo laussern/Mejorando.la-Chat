@@ -35,15 +35,20 @@ block content
                     .actions
                         if user 
                             if user.username != message.user.username
-                                a(href="#", target="_blank").responder
+                                a(href="#", target="_blank").icon-undo.responder
                                 
                             if user.admin
-                                a(href="#", target="_blank", data-borrar=message.id).borrar
+                                a(href="#", target="_blank", data-borrar=message.id).borrar.icon-blocked
+
+        .mentions#mentions
+
     if user
         footer
+            a(href="#", title="Menciones").icon-mention#mention-btn
+            a(href="#", title="Sonido").icon-volume-high#sound-btn
             if user.admin
-                a(href="/admin", target="_blank") Admin        
-            a(href="/salir") Salir
+                a(href="/admin", target="_blank", title="Administrador").icon-award-fill
+            a(href="/salir", title="Salir").icon-exit
     else
         #login
             .overlay.animated

@@ -69,15 +69,24 @@ a
                 span
                     margin-right 5px
 
-    .messages
+    &.alternate
+      .messages
+        display none
+      .mentions
+        display block
+
+    .mentions
+      display none
+
+    .messages, .mentions
         position absolute
         overflow-y scroll
         -webkit-overflow-scrolling touch
         top 100px
-        bottom 20px
+        bottom 24px
         absolute right left
 
-        .message
+        .message, .mention
             padding 10px 0
             position relative
             overflow hidden
@@ -138,22 +147,31 @@ a
                 font-size 12px
 
             .borrar
-              background url("/images/website/borrar.png") no-repeat
               absolute top 5px right 5px
-              height 14px
-              width 14px
+              font-size 15px
+              color #bbb
+
+              &:hover
+                text-decoration none
+                color white
 
               &.ready
                 background-color red
+                color white
 
-            .responder
-              position absolute
-              background rgba(0,0,0,.7) url("/images/website/respon-icn.png") no-repeat center
+            .icon-undo
+              background rgba(0,0,0,.7)
+              text-align center
               width 32px
               height 32px
+              line-height 32px
               absolute left 10px top 10px
               transition opacity 0.2 ease-out
               opacity 0
+
+              &:hover
+                text-decoration none
+
 
               &:hover
                 opacity 1
@@ -231,9 +249,10 @@ a
 
 footer
     text-align center
-    font-size 11px
+    font-size 16px
     text-transform uppercase
     position absolute
+    padding 2px 0
     bottom 0
     left 0 
     right 0
@@ -241,6 +260,13 @@ footer
     a
         color #bbb
         margin 0 5px
+
+        &.icon-mention 
+          font-size 19px
+
+        &:hover
+          text-decoration none
+          color white
 
 
 @media screen and (max-width:458px)
@@ -548,4 +574,67 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   -moz-animation-name: bounceOutUp;
   -o-animation-name: bounceOutUp;
   animation-name: bounceOutUp;
+}
+
+@font-face {
+  font-family: 'icomoon';
+  src:url('../../fonts/icomoon.eot');
+  src:url('../../fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+    url('../../fonts/icomoon.svg#icomoon') format('svg'),
+    url('../../fonts/icomoon.woff') format('woff'),
+    url('../../fonts/icomoon.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+  font-family: 'icomoon';
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"]:before {
+*/
+.icon-volume-high:before, .icon-volume-mute:before, .icon-blocked:before, .icon-undo:before, .icon-bubble:before, .icon-award-fill:before, .icon-exit:before, .icon-stop:before, .icon-mention:before {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+}
+.icon-mention:before {
+  content: "@"
+}
+.icon-volume-high:before {
+  content: "\21";
+}
+.icon-volume-mute:before {
+  content: "\22";
+}
+.icon-blocked:before {
+  content: "\23";
+}
+.icon-undo:before {
+  content: "\24";
+}
+.icon-bubble:before {
+  content: "\25";
+}
+.icon-award-fill:before {
+  content: "\26";
+}
+.icon-exit:before {
+  content: "\27";
+}
+.icon-stop:before {
+  content: "\28";
 }
