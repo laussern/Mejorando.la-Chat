@@ -20,6 +20,11 @@ block content
                     else
                         input(type="checkbox", checked)#publish
 
+        if user
+            nav#user-nav
+                a(href="#", title="Menciones").icon-mention#mention-btn
+                a(href="#", title="Sonido").icon-volume-high#sound-btn
+
         .messages#messages
             each message in messages
                 div(class="message#{ message.user.admin ? ' destacado' : ''}#{ user && user.username == message.user.username ? ' sameuser' : ''}", id="message-#{message._id}")
@@ -40,16 +45,16 @@ block content
                             if user.admin
                                 a(href="#", target="_blank", data-borrar=message.id).borrar.icon-blocked
 
-        .mentions#mentions
+        .messages#mentions
 
-    if user
-        footer
-            a(href="#", title="Menciones").icon-mention#mention-btn
-            a(href="#", title="Sonido").icon-volume-high#sound-btn
+    footer
+        a(href="https://github.com/dual3nigma/Mejorando.la-Chat", target="_blank", title="En Github").icon-github
+        if user
             if user.admin
-                a(href="/admin", target="_blank", title="Administrador").icon-award-fill
+                a(href="/admin", target="_blank", title="Estadísticas").icon-stats
             a(href="/salir", title="Salir").icon-exit
-    else
+
+    if !user
         #login
             .overlay.animated
             .panel.animated

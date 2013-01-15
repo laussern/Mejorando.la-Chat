@@ -108,10 +108,21 @@ jQuery(function ($) {
 
         // si tiene una mencion
         if($message.find('.mention').size() > 0) {
-            $message = $('<div class="mention'+clase+'"><div class="avatar"><a href="'+message.user.link+'" target="_blank"><img src="'+message.user.avatar+'" alt="'+message.user.username+'" width="30" height="30" /></a></div><a href="'+message.user.link+'" target="_blank" class="user">'+message.user.username+'</a><p class="content">'+message.content+'</p><div class="time"><small title="'+fecha.toISOString()+'">'+fecha.toString('MMMM d, HH:mm')+'</small></div></div>');
+            var html = '<div class="message'+clase+'"><div class="avatar"><a href="'+message.user.link+'" target="_blank"><img src="'+message.user.avatar+'" alt="'+message.user.username+'" width="30" height="30" /></a></div><a href="'+message.user.link+'" target="_blank" class="user">'+message.user.username+'</a><p class="content">'+message.content+'</p><div class="time"><small title="'+fecha.toISOString()+'">'+fecha.toString('MMMM d, HH:mm')+'</small></div><div class="actions">'+actions+'</div></div>';
+            $message = $(html);
             $mentions.prepend($message);
         
             if(canSound) mentionSnd.play();
+
+            $('#mention-btn').addClass('new');
+
+            if(typeof(Storage) !== 'undefined') {
+                if(localStorage.chat_mentions) {
+                    localStorage.chat_mentions += html;
+                } else {
+                    localStorage.chat_mentions = html;
+                }
+            }
         }
     }
 
@@ -141,25 +152,30 @@ jQuery(function ($) {
         return false;
     });
 
-    $messages.on('click', '.responder',  function () {
+    $chat.on('click', '.responder',  function () {
         var $self = $(this);
 
         var mention = $self.closest('.message').find('.user').text();
 
         if(mention) {
-            $text.val('@'+mention+' ').focus();
+            if($text.val().length > 0 ) {
+                $text.val($text.val() + ' @'+mention);
+            } else {
+                $text.val('@'+mention+' ');
+            }
+            $text.focus();
         }
 
         return false;
     });
 
-    var $footer = $('footer');
-    $footer.on('click', '#mention-btn', function () {
+    var $menu = $('#user-nav');
+    $menu.on('click', '#mention-btn', function () {
         var $self = $(this);
 
         if($self.hasClass('icon-mention')) {
             $chat.addClass('alternate');
-            $self.removeClass('icon-mention').addClass('icon-bubble');
+            $self.removeClass('icon-mention new').addClass('icon-bubble');
         } else {
             $chat.removeClass('alternate');
             $self.addClass('icon-mention').removeClass('icon-bubble');
@@ -169,7 +185,7 @@ jQuery(function ($) {
     });
 
     var canSound = true;
-    $footer.on('click', '#sound-btn', function () {
+    $menu.on('click', '#sound-btn', function () {
         var $self = $(this);
 
         if($self.hasClass('icon-volume-high')) {
@@ -183,5 +199,8 @@ jQuery(function ($) {
         return false;
     });
 
+    if(typeof(Storage) !== 'undefined' && localStorage.chat_mentions) {
+        $mentions.append(localStorage.chat_mentions);
+    }
     var mentionSnd = new Audio('sound/mention.wav');
 });

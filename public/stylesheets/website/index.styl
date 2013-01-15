@@ -29,9 +29,31 @@ a
 
 /* CHAT */
 .chat 
+    nav 
+      text-align left
+      margin 0 5%
+      font-size 16px
+      text-transform uppercase
+      padding 2px 0
+
+      a
+          color #bbb
+          margin 0 5px
+          transition color .2s ease-out
+
+          &.icon-mention 
+            font-size 19px
+
+            &.new
+              color #29afff
+
+          &:hover
+            text-decoration none
+            color white
+
+
     .chatbox
-        padding 20px 5%
-        margin-bottom 20px
+        padding 20px 5% 0
 
         .chatform
             position relative
@@ -70,23 +92,35 @@ a
                     margin-right 5px
 
     &.alternate
-      .messages
+      #messages
         display none
-      .mentions
+      #mentions
         display block
 
-    .mentions
+        .borrar 
+          display none !important
+
+    #mentions
       display none
 
-    .messages, .mentions
+      &:empty:before
+        color #bbb
+        text-align center
+        display block
+        font-size 14px
+        font-style italic
+        content "Aún no tienes menciones"
+
+    .messages
         position absolute
         overflow-y scroll
         -webkit-overflow-scrolling touch
-        top 100px
+        top 103px
         bottom 24px
         absolute right left
 
-        .message, .mention
+
+        .message
             padding 10px 0
             position relative
             overflow hidden
@@ -248,7 +282,7 @@ a
 /* FOOTER */
 
 footer
-    text-align center
+    text-align right
     font-size 16px
     text-transform uppercase
     position absolute
@@ -603,16 +637,13 @@ Instead of a list of all class selectors,
 you can use the generic selector below, but it's slower:
 [class*="icon-"]:before {
 */
-.icon-volume-high:before, .icon-volume-mute:before, .icon-blocked:before, .icon-undo:before, .icon-bubble:before, .icon-award-fill:before, .icon-exit:before, .icon-stop:before, .icon-mention:before {
+.icon-volume-high:before, .icon-volume-mute:before, .icon-blocked:before, .icon-undo:before, .icon-bubble:before, .icon-exit:before, .icon-stats:before, .icon-github:before, .icon-mention:before, .icon-bell:before, .icon-no-bell:before {
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
   font-weight: normal;
   line-height: 1;
   -webkit-font-smoothing: antialiased;
-}
-.icon-mention:before {
-  content: "@"
 }
 .icon-volume-high:before {
   content: "\21";
@@ -629,12 +660,21 @@ you can use the generic selector below, but it's slower:
 .icon-bubble:before {
   content: "\25";
 }
-.icon-award-fill:before {
-  content: "\26";
-}
 .icon-exit:before {
   content: "\27";
 }
-.icon-stop:before {
+.icon-stats:before {
+  content: "\29";
+}
+.icon-bell:before {
   content: "\28";
+}
+.icon-no-bell:before {
+  content: "\26";
+}
+.icon-github:before {
+  content: "\2b";
+}
+.icon-mention:before {
+  content: "@"
 }
