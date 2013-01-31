@@ -5,7 +5,7 @@
 
 var express = require('express'),
     request = require('request'),
-    toobusy = require('toobusy'),
+    //toobusy = require('toobusy'),
     // database
     mongoose = require('mongoose'),
     // authentication
@@ -66,10 +66,10 @@ module.exports = function (config) {
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
 
-    app.use(function (req, res, next) {
+    /*app.use(function (req, res, next) {
       if(toobusy()) res.status(500).sendfile(__dirname+'/views/overload.html');
       else next();
-    });
+    });*/
 
     app.use(express.static(__dirname + '/public'));
     app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
