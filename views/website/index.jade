@@ -63,7 +63,7 @@ block content
                 a(href="/auth/facebook").facebook Conectate con
                 a(href="/auth/twitter").twitter Conectate con
 
-
+    if user
         .dialog#encuesta
             .overlay.animated
             .panel.animated
@@ -75,32 +75,19 @@ block content
                         p
                             span
                                 label Si 
-                                input(type="radio", name="question[0][answer]", value="true", checked)
+                                input(type="radio", name="question[0][answer]", value="1", checked)
 
                             span
                                 label No
-                                input(type="radio", name="question[0][answer]", value="false")
-
-                    .question 
-                        input(type="hidden", name="question[1][content]", value="¿Te gustó @LeonidasEsteban?")
-                        p ¿Te gustó @LeonidasEsteban?
-
-                        p
-                            span
-                                label Si 
-                                input(type="radio", name="question[1][answer]", value="true", checked)
-
-                            span
-                                label No
-                                input(type="radio", name="question[1][answer]", value="false")
-
+                                input(type="radio", name="question[0][answer]", value="0")
+                    .questions
 
                     .comment
                         textarea(placeholder="¿Tienes algún comentario del programa de hoy?", name="comment").field
 
                     .public
                         p
-                            input(type="checkbox", name="public", value="true", checked)
+                            input(type="checkbox", name="public", value="1", checked)
                             | hacer público mi comentario en el archivo de videos
 
                     .enviar

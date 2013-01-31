@@ -5,31 +5,46 @@
 body,
 input,
 textarea,
-button {
+button,
+td,
+th {
   font-family: 'Open Sans', sans-serif;
-  font-size: 13px;
-  color: #303030;
+  font-size: 15px;
+}
+body {
+  color: #fff;
+  background: #383838;
+}
+a {
+  color: #fff;
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+p {
+  margin: 7px 0;
 }
 header {
   background: #303030;
   height: 45px;
   position: relative;
 }
-header a {
-  padding: 0;
-  background: none;
-  display: inline;
-}
-header a:hover {
-  background: none;
-}
-header h2 {
+header nav {
+  font-size: 20px;
+  background: #ccc;
   position: absolute;
-  right: 10px;
-  top: 3px;
-  margin: 0;
-  font-size: 25px;
-  color: #fff;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+header nav a {
+  color: #303030;
+  padding: 10px;
+  display: inline-block;
+}
+header nav a:hover {
+  text-decoration: none;
 }
 h1,
 h2,
@@ -38,97 +53,139 @@ h4,
 h5,
 h6 {
   font-weight: normal;
-  text-transform: uppercase;
 }
 h2 {
-  font-size: 50px;
-  margin: 10px 0;
+  font-size: 30px;
+}
+h2 span {
+  color: #5fbf55;
+  margin-right: 10px;
 }
 h3 {
   font-size: 25px;
-  margin: 3px 0;
+  margin: 10px 0;
 }
-a {
-  color: inherit;
-  text-decoration: none;
+.page {
+  padding: 20px;
 }
-a:hover {
-  text-decoration: underline;
-}
-/*a
-    background-color #303030
-    color white
-    padding 1px 5px
-    display inline block
-    text-decoration none
-
-    &:hover, &.active
-        background-color black*/
-#main {
-  padding: 30px;
-}
-.cols {
+.comments {
   overflow: hidden;
 }
-.col1 {
+.comments .comment {
+  margin: 15px 0;
+}
+.comments .comment .avatar {
   float: left;
-}
-.col2 {
-  float: left;
-}
-h4 {
-  background: #303030;
-  display: inline-block;
-  color: #fff;
-  padding: 1px 5px;
-  margin: 3px 0;
-}
-hr {
-  margin: 10px 0;
-  border: 0;
-  border-bottom: 1px solid #303030;
-}
-table {
-  border-spacing: 0;
-  width: 700px;
-  border-collapse: collapse;
-  border: 1px solid #e5e5e5;
+  margin-right: 10px;
+  border: 1px solid #808080;
   margin-top: 10px;
 }
-table td {
-  padding: 2px 10px;
-  border: 1px solid #f3f3f3;
-  vertical-align: middle;
+.comments .comment .avatar img {
+  display: block;
+  height: 30px;
 }
-table td:first-child img {
+.comments .comment p.user {
+  font-weight: bold;
+  font-size: 15px;
+}
+#impacto {
+  width: 300px;
+  height: 300px;
+}
+#geo {
+  width: 750px;
+  height: 500px;
+}
+.legend {
+  background: #232323;
+  padding: 5px;
+  display: inline-block;
+}
+.legend p {
+  display: inline-block;
+  margin: 7px 10px;
+}
+.legend p .icon-thumbs-up {
+  color: #6673d8;
+}
+.legend p .icon-thumbs-up-2 {
+  color: #d13b3b;
+}
+table {
+  margin: 20px 0;
+  border-spacing: 0;
+}
+table td,
+table th {
+  padding: 3px 5px;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+table td img,
+table th img {
   margin-right: 10px;
 }
-table tr:nth-child(even) {
-  background: #e5e5e5;
+@font-face {
+  font-family: 'icomoon';
+  src: url("fonts/icomoon.eot");
+  src: url("fonts/icomoon.eot?#iefix") format('embedded-opentype'), url("fonts/icomoon.woff") format('woff'), url("fonts/icomoon.ttf") format('truetype'), url("fonts/icomoon.svg#icomoon") format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
-.stats {
-  overflow: hidden;
+/* Use the following CSS code if you want to use data attributes for inserting your icons */
+[data-icon]:before {
+  font-family: 'icomoon';
+  content: attr(data-icon);
+  speak: none;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
 }
-.stats .block-stat {
-  float: left;
-  margin-right: 20px;
+/* Use the following CSS code if you want to have a class per icon */
+/*
+Instead of a list of all class selectors,
+you can use the generic selector below, but it's slower:
+[class*="icon-"]:before {
+*/
+.icon-home:before,
+.icon-stats:before,
+.icon-twitter:before,
+.icon-facebook:before,
+.icon-users:before,
+.icon-bubbles:before,
+.icon-signup:before,
+.icon-thumbs-up:before,
+.icon-thumbs-up-2:before {
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
 }
-.stats .block-stat span {
-  display: inline-block;
-  padding: 0 5px;
-  margin: 3px 0;
-  border-right: 2px solid #e5e5e5;
+.icon-home:before {
+  content: "\e002";
 }
-.stats .block-stat span:first-of-type {
-  padding-left: 0;
+.icon-stats:before {
+  content: "\6b";
 }
-.stats .block-stat span:last-of-type {
-  border-right: 0;
+.icon-twitter:before {
+  content: "\e111";
 }
-.chart-geo {
-  width: 700px;
-  height: 500px;
-  margin: 15px 0;
-  background: url("/images/admin/cargando.gif") center center no-repeat;
-  border: 1px solid #9f9f9f;
+.icon-facebook:before {
+  content: "\e10d";
+}
+.icon-users:before {
+  content: "\46";
+}
+.icon-bubbles:before {
+  content: "\41";
+}
+.icon-signup:before {
+  content: "\e055";
+}
+.icon-thumbs-up:before {
+  content: "\e076";
+}
+.icon-thumbs-up-2:before {
+  content: "\e077";
 }

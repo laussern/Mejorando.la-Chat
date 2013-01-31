@@ -84,5 +84,15 @@ module.exports = function (io) {
         }
       });
     });
+    
+    socket.on('push encuesta', function (questions) {
+      getUserFromHS(hs, function (err, user) {
+        if(err) return err;
+
+        if(user && user.admin) {
+          io.sockets.emit('encuesta', questions);
+        }
+      });
+    });
   });
 };

@@ -1,0 +1,40 @@
+extends layout
+
+block body
+    h2
+        span.icon-signup
+        | feedback
+
+    h3 impacto
+
+    #impacto(data-values="#{likes},#{dislikes}")
+
+    .legend
+        p
+            span.icon-thumbs-up
+            |  #{likes}
+
+        p
+            span.icon-thumbs-up-2
+            |  #{dislikes}
+
+    h3 comentarios
+
+    p: em #{comments.length} comentarios
+
+    .comments
+        each comment in comments
+            .comment
+                .avatar
+                    a(href=comment.user.link, target="_blank")
+                        img(src=comment.user.avatar, alt=comment.user.username)
+
+                p.user
+                    a(href=comment.user.link, target="_blank")=comment.user.username
+
+                p.content=comment.comment
+
+
+    h3 publicar encuesta 
+
+    button#publish ¡PUBLICAR AHORA!

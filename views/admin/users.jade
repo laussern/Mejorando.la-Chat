@@ -1,0 +1,35 @@
+extends layout
+
+block body
+    h2
+        span.icon-users
+        | usuarios
+
+
+    #geo(data-values=geo)
+
+    p: em #{users.length} usuarios
+
+    table
+            thead: tr
+                th Usuario
+                th País
+                th Red
+                th IP
+                th Admin
+                th Activo
+                th 
+
+
+            tbody
+                each usuario in users
+                    tr(data-id=usuario.id).user
+                        td
+                            img(src=usuario.avatar, height=20, alt=usuario.username)
+                            a(href=usuario.link)= usuario.username
+                        td #{ usuario.pais }
+                        td(class="icon-#{usuario.red}")
+                        td #{ usuario.ip }
+                        td: input(type="checkbox", checked=usuario.admin).admin
+                        td: input(type="checkbox", checked=usuario.activado).activado
+                        td: input(type="submit", value="Guardar").guardar

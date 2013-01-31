@@ -1,6 +1,14 @@
 var website = require('./controllers/website'),
     admin = require('./controllers/admin');
 
+function is_admin(req, res, next) {
+  if(req.user && req.user.admin) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+}
+
 module.exports = function (app, passport) {
 
   /*
@@ -13,8 +21,11 @@ module.exports = function (app, passport) {
   /*
    * Admin urls
    */
-  app.get('/admin', admin.index);
-  app.post('/admin/update', admin.update);
+  app.get('/admin',          is_admin, admin.index);
+  app.get('/admin/feedback', is_admin, admin.feedback);
+  app.get('/admin/users',    is_admin, admin.users);
+
+  app.post('/admin/update',  is_admin, admin.update);
   /*
    * Passport urls
    */

@@ -64,9 +64,31 @@ jQuery(function ($) {
         $('#message-'+id).remove();
     });
 
-    /*socket.on('encuesta', function (html) {
-        $('body').append(html);
-    });*/
+    socket.on('encuesta', function (questions) {
+        if($('#encuesta').size() <= 0) return;
+        
+        var html = '';
+
+        for(var i = 1; i <= questions.length; i++) {
+            html += '\
+            <div class="question">\
+                <input type="hidden" name="question['+i+'][content]" value="'+questions[i-1]+'" />\
+                <p>'+questions[i-1]+'</p>\
+                <p>\
+                    <span>\
+                        <label>Si</label>\
+                        <input type="radio" name="question['+i+'][answer]" value="1" checked /> \
+                    </span>\
+                    <span>\
+                        <label>No</label>\
+                        <input type="radio" name="question['+i+'][answer]" value="0" /> \
+                    </span>\
+                </p>\
+            </div>';
+        }
+
+        $('#encuesta .questions').html(html).trigger('ready');
+    });
 
     function render(message) {
         var id = 'message-'+(typeof message.id == 'undefined' ? message.datetime : message.id);
@@ -213,11 +235,13 @@ jQuery(function ($) {
             $overlay = $encuesta.find('.overlay'),
             $panel = $encuesta.find('.panel');
 
-        setTimeout(function () {
+        if($encuesta.size() <= 0) return;
+
+        $encuesta.on('ready', function () {
             $encuesta.addClass('show');
             $overlay.addClass('fadeIn');
             $panel.addClass('bounceInDown');
-        }, 1000);
+        });
 
         $encuesta.on('submit', 'form', function () {
             var $form = $(this);

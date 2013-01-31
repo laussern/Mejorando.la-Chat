@@ -11,12 +11,16 @@ html
         script(src="//ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js")
         script(src="//cdnjs.cloudflare.com/ajax/libs/lodash.js/1.0.0-rc.2/lodash.min.js")
         script(src="//www.google.com/jsapi")
+        script(src="/socket.io/socket.io.js")
         script(src="/javascripts/admin/index.js")
     body
         header
-            h1: a(href="/admin/"): img(src="/images/admin/logo.gif", alt="Mejorando.la")
+            h1: a(href="/admin"): img(src="/images/admin/logo.gif", alt="Mejorando.la")
 
-            block titulo
-                h2 Administracion
+            nav
+                a(href="/admin", title="Administrador").icon-home
+                a(href="/admin/feedback", title="Encuestas").icon-signup
+                a(href="/admin/users", title="Usuarios").icon-users
 
-        block body 
+        .page
+            block body 
