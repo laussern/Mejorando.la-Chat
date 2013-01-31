@@ -32,7 +32,7 @@ exports.feedback = function (req, res, next) {
     }
 
     res.render('admin/feedback', {
-      comments: Feedback.find({}, null, { sort: { datetime: -1 }}).populate('user'),
+      comments: Feedback.find({ "comment": {$ne: null } }, null, { sort: { datetime: -1 }}).populate('user'),
       likes: likes,
       dislikes: dislikes
     });
