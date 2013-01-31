@@ -64,6 +64,10 @@ jQuery(function ($) {
         $('#message-'+id).remove();
     });
 
+    /*socket.on('encuesta', function (html) {
+        $('body').append(html);
+    });*/
+
     function render(message) {
         var id = 'message-'+(typeof message.id == 'undefined' ? message.datetime : message.id);
 
@@ -203,4 +207,36 @@ jQuery(function ($) {
         $mentions.append(localStorage.chat_mentions);
     }
     var mentionSnd = new Audio('sound/mention.wav');
+
+    +function () {
+        var $encuesta = $('#encuesta'),
+            $overlay = $encuesta.find('.overlay'),
+            $panel = $encuesta.find('.panel');
+
+        setTimeout(function () {
+            $encuesta.addClass('show');
+            $overlay.addClass('fadeIn');
+            $panel.addClass('bounceInDown');
+        }, 1000);
+
+        $encuesta.on('submit', 'form', function () {
+            var $form = $(this);
+
+            $(this).addClass('sending');
+
+            $.post($form.attr('action'), $form.serialize(),
+                function (r) {
+                    $overlay.addClass('fadeOut');
+                    $panel.addClass('bounceOutUp');
+
+                    setTimeout(function () {
+                        $encuesta.removeClass('show');
+                        $overlay.removeClass('fadeOut fadeIn');
+                        $panel.removeClass('bounceOutUp bounceInDown');
+                    }, 1010);
+            });
+
+            return false;
+        });
+    }();
 });

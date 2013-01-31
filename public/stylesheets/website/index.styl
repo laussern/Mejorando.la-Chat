@@ -27,6 +27,17 @@ a
 ::selection
     background-color #29b1ff
 
+.field
+    background #515458
+    border 1px solid rgba(255,255,255, 0.30)
+    font-size 15px
+    border-radius 3px
+    padding 3px
+    padding-bottom 30px
+    outline 0
+    box-sizing border-box
+    width 100%
+
 /* CHAT */
 .chat 
     nav 
@@ -64,18 +75,6 @@ a
                 absolute bottom right
                 background rgba(61, 64, 67, 0.6) url(/images/website/form-sending.gif) center center no-repeat
                 z-index 9
-
-
-            .chatfield
-                background #515458
-                border 1px solid rgba(255,255,255, 0.30)
-                font-size 15px
-                border-radius 3px
-                padding 3px
-                padding-bottom 30px
-                outline 0
-                box-sizing border-box
-                width 100%
 
             .publish
                 background #29b1ff url(/images/website/submit-esquina.png) top left no-repeat
@@ -216,7 +215,7 @@ a
 
 
 /* LOGIN */
-#login
+.dialog
     absolute top left
     absolute bottom right
     z-index 9
@@ -239,14 +238,16 @@ a
     .panel
       background #3d4043
       padding 20px 15px
-      font-size 18px
-      text-transform uppercase
       box-shadow 3px 3px 0 #272b2e
       position relative
 
+#login
       p
         margin-bottom 15px
 
+      .panel
+        text-transform uppercase
+        font-size 18px
 
       a
         display inline-block
@@ -278,6 +279,77 @@ a
           &:hover
             border-color #9dffff
     
+#encuesta
+  .panel
+    background-image url(/images/website/encuesta-top.png)
+    background-image-position left top 
+    background-repeat repeat-x
+    padding-top 30px
+    font-size 14px 
+
+    form
+      position relative
+
+      &.sending:after
+        content " "
+        absolute top left
+        absolute bottom right
+        background rgba(61, 64, 67, 0.6) url(/images/website/form-sending.gif) center center no-repeat
+        z-index 9
+
+    .question
+      overflow hidden
+      margin-bottom 10px
+
+      p
+        float left
+
+        &:last-child
+          float right
+          margin-left 30px
+
+        span
+          margin 0 7px
+
+    .public
+      font-size 11px
+      color #b0b1b2
+
+    .comment
+      textarea
+        font-size 14px
+
+    .enviar
+      text-align right
+      margin-top 10px
+
+      button
+        background #333537
+        border 0
+        font-size 14px
+        padding 5px 10px
+        cursor pointer
+        transition background-color .2s ease-out
+        position relative
+        right 10px
+
+        &:after
+          content " "
+          position absolute
+          right -10px
+          border-left 10px solid #333537
+          border-bottom 15px solid transparent
+          border-top 14px solid transparent
+          display block
+          top 0
+          transition border-color .2s ease-out
+
+        &:hover
+          background-color #1e2123
+
+          &:after
+            border-left-color #1e2123
+
 
 /* FOOTER */
 

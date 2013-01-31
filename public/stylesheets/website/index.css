@@ -114,6 +114,20 @@ a:hover {
 ::selection {
   background-color: #29b1ff;
 }
+.field {
+  background: #515458;
+  border: 1px solid rgba(255,255,255,0.3);
+  font-size: 15px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  padding: 3px;
+  padding-bottom: 30px;
+  outline: 0;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+}
 /* CHAT */
 .chat nav {
   text-align: left;
@@ -157,20 +171,6 @@ a:hover {
   right: 0;
   background: rgba(61,64,67,0.6) url("/images/website/form-sending.gif") center center no-repeat;
   z-index: 9;
-}
-.chat .chatbox .chatform .chatfield {
-  background: #515458;
-  border: 1px solid rgba(255,255,255,0.3);
-  font-size: 15px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  padding: 3px;
-  padding-bottom: 30px;
-  outline: 0;
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  width: 100%;
 }
 .chat .chatbox .chatform .publish {
   background: #29b1ff url("/images/website/submit-esquina.png") top left no-repeat;
@@ -335,7 +335,7 @@ a:hover {
   filter: none;
 }
 /* LOGIN */
-#login {
+.dialog {
   position: absolute;
   top: 0;
   left: 0;
@@ -345,7 +345,7 @@ a:hover {
   z-index: 9;
   display: none;
 }
-#login.show {
+.dialog.show {
   display: -webkit-box;
   display: -moz-box;
   display: -ms-box;
@@ -359,7 +359,7 @@ a:hover {
   -ms-box-align: center;
   box-align: center;
 }
-#login .overlay {
+.dialog .overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -369,19 +369,21 @@ a:hover {
   background: rgba(255,255,255,0.5);
   cursor: pointer;
 }
-#login .panel {
+.dialog .panel {
   background: #3d4043;
   padding: 20px 15px;
-  font-size: 18px;
-  text-transform: uppercase;
   -webkit-box-shadow: 3px 3px 0 #272b2e;
   box-shadow: 3px 3px 0 #272b2e;
   position: relative;
 }
-#login .panel p {
+#login p {
   margin-bottom: 15px;
 }
-#login .panel a {
+#login .panel {
+  text-transform: uppercase;
+  font-size: 18px;
+}
+#login a {
   display: inline-block;
   font-size: 15px;
   padding: 15px 8px;
@@ -397,23 +399,104 @@ a:hover {
   background-position: 140px center;
   background-repeat: no-repeat;
 }
-#login .panel a:hover {
+#login a:hover {
   text-decoration: none;
 }
-#login .panel a.facebook {
+#login a.facebook {
   margin-right: 10px;
   background-image: url("/images/website/fb.png");
 }
-#login .panel a.facebook:hover {
+#login a.facebook:hover {
   border-color: #8da5ec;
 }
-#login .panel a.twitter {
+#login a.twitter {
   background-color: #00aee8;
   border-color: #49c9ff;
   background-image: url("/images/website/tt.png");
 }
-#login .panel a.twitter:hover {
+#login a.twitter:hover {
   border-color: #9dffff;
+}
+#encuesta .panel {
+  background-image: url("/images/website/encuesta-top.png");
+  background-image-position: left top;
+  background-repeat: repeat-x;
+  padding-top: 30px;
+  font-size: 14px;
+}
+#encuesta .panel form {
+  position: relative;
+}
+#encuesta .panel form.sending:after {
+  content: " ";
+  position: absolute;
+  top: 0;
+  left: 0;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(61,64,67,0.6) url("/images/website/form-sending.gif") center center no-repeat;
+  z-index: 9;
+}
+#encuesta .panel .question {
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+#encuesta .panel .question p {
+  float: left;
+}
+#encuesta .panel .question p:last-child {
+  float: right;
+  margin-left: 30px;
+}
+#encuesta .panel .question p span {
+  margin: 0 7px;
+}
+#encuesta .panel .public {
+  font-size: 11px;
+  color: #b0b1b2;
+}
+#encuesta .panel .comment textarea {
+  font-size: 14px;
+}
+#encuesta .panel .enviar {
+  text-align: right;
+  margin-top: 10px;
+}
+#encuesta .panel .enviar button {
+  background: #333537;
+  border: 0;
+  font-size: 14px;
+  padding: 5px 10px;
+  cursor: pointer;
+  -webkit-transition: background-color 0.2s ease-out;
+  -moz-transition: background-color 0.2s ease-out;
+  -o-transition: background-color 0.2s ease-out;
+  -ms-transition: background-color 0.2s ease-out;
+  transition: background-color 0.2s ease-out;
+  position: relative;
+  right: 10px;
+}
+#encuesta .panel .enviar button:after {
+  content: " ";
+  position: absolute;
+  right: -10px;
+  border-left: 10px solid #333537;
+  border-bottom: 15px solid transparent;
+  border-top: 14px solid transparent;
+  display: block;
+  top: 0;
+  -webkit-transition: border-color 0.2s ease-out;
+  -moz-transition: border-color 0.2s ease-out;
+  -o-transition: border-color 0.2s ease-out;
+  -ms-transition: border-color 0.2s ease-out;
+  transition: border-color 0.2s ease-out;
+}
+#encuesta .panel .enviar button:hover {
+  background-color: #1e2123;
+}
+#encuesta .panel .enviar button:hover:after {
+  border-left-color: #1e2123;
 }
 /* FOOTER */
 footer {

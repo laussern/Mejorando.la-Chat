@@ -1,5 +1,6 @@
 var mongoose = require('mongoose'),
-    Message = mongoose.model('Message');
+    Message = mongoose.model('Message'),
+    Feedback = mongoose.model('Feedback');
 
 exports.index = function (req, res, next) {
     res.render('website/index', {
@@ -8,6 +9,31 @@ exports.index = function (req, res, next) {
             .find({ activado: true }, null, { sort: { datetime: -1 }, limit: 25 })
             .populate('user')
     });
+};
+
+exports.feedback = function (req, res, next) {
+    if(req.user) {
+        var f = new Feedback({
+            questions: req.param('question', []),
+            comment: req.param('comment', null),
+            public: req.param('public', false),
+            user: req.user
+        });
+
+        f.save(function () {});
+
+        if(req.xhr) {
+            res.send('OK');
+        } else {
+            res.redirect('/');
+        }
+    } else {
+        if(req.xhr) {
+            res.send('ERR');
+        } else {
+            res.redirect('/');
+        }
+    }
 };
 
 exports.salir = function (req, res) {

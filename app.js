@@ -24,6 +24,7 @@ module.exports = function (config) {
   // modelos
   require('./models/user');
   require('./models/message');
+  require('./models/feedback');
 
   /**
    * Auth configuration

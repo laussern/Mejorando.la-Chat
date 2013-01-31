@@ -7,6 +7,7 @@ module.exports = function (app, passport) {
    * Website urls
    */
   app.get('/', website.index);
+  app.post('/feedback', website.feedback);
   app.get('/salir', website.salir);
 
   /*

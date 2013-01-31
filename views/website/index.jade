@@ -3,7 +3,7 @@ extends layout
 block content
     .chat
         .chatbox: form.chatform#chatform
-            input(type="text", placeholder="Participa en el chat", maxlength="128").chatfield
+            input(type="text", placeholder="Participa en el chat", maxlength="128").field
 
             if user
                 p.publish
@@ -55,13 +55,56 @@ block content
             a(href="/salir", title="Salir").icon-exit
 
     if !user
-        #login
+        .dialog#login
             .overlay.animated
             .panel.animated
                 p Para participar necesitas identificarte
 
                 a(href="/auth/facebook").facebook Conectate con
                 a(href="/auth/twitter").twitter Conectate con
+
+
+        .dialog#encuesta
+            .overlay.animated
+            .panel.animated
+                form(action="/feedback", method="POST")
+                    .question 
+                        input(type="hidden", name="question[0][content]", value="¿Te gustó el programa?")
+                        p ¿Te gustó el programa?
+
+                        p
+                            span
+                                label Si 
+                                input(type="radio", name="question[0][answer]", value="true", checked)
+
+                            span
+                                label No
+                                input(type="radio", name="question[0][answer]", value="false")
+
+                    .question 
+                        input(type="hidden", name="question[1][content]", value="¿Te gustó @LeonidasEsteban?")
+                        p ¿Te gustó @LeonidasEsteban?
+
+                        p
+                            span
+                                label Si 
+                                input(type="radio", name="question[1][answer]", value="true", checked)
+
+                            span
+                                label No
+                                input(type="radio", name="question[1][answer]", value="false")
+
+
+                    .comment
+                        textarea(placeholder="¿Tienes algún comentario del programa de hoy?", name="comment").field
+
+                    .public
+                        p
+                            input(type="checkbox", name="public", value="true", checked)
+                            | hacer público mi comentario en el archivo de videos
+
+                    .enviar
+                        button(type="submit") Enviar »
 
     if user
         script
