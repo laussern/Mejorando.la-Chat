@@ -10,6 +10,8 @@ if(cluster.isMaster) {
 
 	cluster.on('exit', function (worker, code, signal) {
 		console.log('worker ' + worker.process.pid + ' died');
+		cluster.fork();
+		console.log('worker restarted');
 	});
 } else {
 	// aplication
