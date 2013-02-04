@@ -104,7 +104,6 @@ module.exports = function (config) {
   });
 
   app.configure('production', function () {
-    app.use(require('raven').middleware.express(config.sentry_dsn));
     app.use(function (err, req, res, next) {
       res.status(500).sendfile(__dirname+'/views/500.html');
     });
