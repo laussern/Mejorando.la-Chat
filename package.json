@@ -19,8 +19,7 @@
     "socket.io": "0.9.11",
     "express-mongoose": "0.1.0 ",
     "request": "2.12.0",
-    "raven": "0.4.5",
-    "toobusy": "0.2.2"
+    "raven": "0.4.5"
   }, 
   "devDependencies": {
     "mocha": "*"
