@@ -43,7 +43,7 @@ jQuery(function ($) {
             $chatform.addClass('sending');
             $text.blur();
 
-            socket.emit('send message', { content: text, publish: $publish.is(':checked') });
+            socket.emit('send message', { content: text, publish: false });
             socket.once('message sent', function (message) {
                 $chatform.removeClass('sending');
                 $text.val('');
@@ -62,6 +62,14 @@ jQuery(function ($) {
 
     socket.on('message deleted', function (id) {
         $('#message-'+id).remove();
+    });
+
+    socket.on('user connected', function (id) {
+        $('#users-'+id).addClass('online');
+    });
+
+    socket.on('user disconnected', function (id) {
+        $('#users-'+id).removeClass('online');
     });
 
     socket.on('encuesta', function (questions) {
@@ -252,4 +260,22 @@ jQuery(function ($) {
             return false;
         });
     }();
+
+    $('.users a').click(function () {
+        var $self = $(this);
+
+        var mention = $self.attr('data-user');
+
+        if(mention) {
+            if($text.val().length > 0 ) {
+                $text.val($text.val() + ' @'+mention);
+            } else {
+                $text.val('@'+mention+' ');
+            }
+
+            $text.focus();
+        }
+
+        return false;
+    });
 });

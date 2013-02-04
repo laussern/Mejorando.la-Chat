@@ -128,6 +128,60 @@ a:hover {
   box-sizing: border-box;
   width: 100%;
 }
+.users {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background: #29b1ff;
+}
+.users a {
+  display: block;
+  position: relative;
+  opacity: 0.2;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
+  filter: alpha(opacity=20);
+  font-family: 'icomoon';
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  margin: 5px;
+}
+.users a img {
+  display: block;
+  border: 1px solid rgba(255,255,255,0.5);
+}
+.users a.online {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
+.users a:after {
+  content: "\24";
+  background: rgba(0,0,0,0.7);
+  text-align: center;
+  width: 32px;
+  height: 32px;
+  line-height: 32px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  -webkit-transition: opacity 0.2 ease-out;
+  -moz-transition: opacity 0.2 ease-out;
+  -o-transition: opacity 0.2 ease-out;
+  -ms-transition: opacity 0.2 ease-out;
+  transition: opacity 0.2 ease-out;
+  opacity: 0;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+  filter: alpha(opacity=0);
+}
+.users a:hover:after {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+}
 /* CHAT */
 .chat nav {
   text-align: left;
@@ -212,9 +266,8 @@ a:hover {
   -webkit-overflow-scrolling: touch;
   top: 103px;
   bottom: 24px;
-  position: absolute;
-  right: 0;
   left: 0;
+  right: 43px;
 }
 .chat .messages .message {
   padding: 10px 0;
@@ -500,7 +553,7 @@ a:hover {
 }
 /* FOOTER */
 footer {
-  text-align: right;
+  text-align: center;
   font-size: 16px;
   text-transform: uppercase;
   position: absolute;

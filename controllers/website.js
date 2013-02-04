@@ -1,4 +1,5 @@
 var mongoose = require('mongoose'),
+    User = mongoose.model('User'),
     Message = mongoose.model('Message'),
     Feedback = mongoose.model('Feedback');
 
@@ -14,7 +15,8 @@ exports.index = function (req, res, next) {
         messages: Message
             .find({ activado: true }, null, { sort: { datetime: -1 }, limit: 25 })
             .populate('user'),
-        mentions: mentions
+        mentions: mentions,
+        users: User.find({}, null, { sort: { online: -1 }, limit: 10})
     });
 };
 

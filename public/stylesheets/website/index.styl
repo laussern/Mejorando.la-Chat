@@ -38,6 +38,48 @@ a
     box-sizing border-box
     width 100%
 
+.users 
+  position absolute
+  top 0
+  bottom 0
+  right 0
+  background #29b1ff
+
+  a
+    display block
+    position relative
+    opacity .2
+    font-family 'icomoon'
+    speak none
+    font-style normal
+    font-weight normal
+    line-height 1
+    -webkit-font-smoothing antialiased
+    margin 5px
+
+    img
+      display block
+      border 1px solid rgba(255, 255, 255, 0.5)
+
+    &.online
+      opacity 1
+
+
+    &:after
+      content "\24"
+      background rgba(0,0,0,.7)
+      text-align center
+      width 32px
+      height 32px
+      line-height 32px
+      absolute left top
+      transition opacity 0.2 ease-out
+      opacity 0
+
+    &:hover:after
+      opacity 1
+
+
 /* CHAT */
 .chat 
     nav 
@@ -116,7 +158,8 @@ a
         -webkit-overflow-scrolling touch
         top 103px
         bottom 24px
-        absolute right left
+        left 0
+        right 43px
 
 
         .message
@@ -354,7 +397,7 @@ a
 /* FOOTER */
 
 footer
-    text-align right
+    text-align center
     font-size 16px
     text-transform uppercase
     position absolute

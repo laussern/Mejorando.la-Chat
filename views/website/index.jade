@@ -5,21 +5,6 @@ block content
         .chatbox: form.chatform#chatform
             input(type="text", placeholder="Participa en el chat", maxlength="128").field
 
-            if user
-                p.publish
-                    case user.red
-                        when 'twitter'
-                            span Publicar a twitter
-                        when 'facebook'
-                            span Publicar a facebook
-                        default
-                            span Publicar 
-
-                    if user.admin
-                        input(type="checkbox")#publish
-                    else
-                        input(type="checkbox", checked)#publish
-
         if user
             nav#user-nav
                 a(href="#", title="Menciones").icon-mention#mention-btn
@@ -104,6 +89,11 @@ block content
 
                     .enviar
                         button(type="submit") Continuar »
+
+    .users
+        each u in users
+            a(href=u.link, target="_blank", class="#{ u.online ? 'online' : ''}", data-user=u.username, id="users-#{u.id}")
+                img(src=u.avatar, alt=u.username, width=30, height=30)
 
     if user
         script

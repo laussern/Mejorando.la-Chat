@@ -101,6 +101,7 @@ module.exports = function (io) {
 
         if(user) {
           user.update({ $set: { online: false }}, function () {});
+          socket.broadcast.emit('user disconnected', user.id);
         }
       });
     });
@@ -110,6 +111,7 @@ module.exports = function (io) {
 
       if(user) {
         user.update({ $set: { online: true }}, function () {} );
+        socket.broadcast.emit('user connected', user.id);
       }
     });
   });
