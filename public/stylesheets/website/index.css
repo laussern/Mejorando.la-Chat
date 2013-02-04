@@ -211,6 +211,7 @@ a:hover {
 }
 .chat .chatbox {
   padding: 20px 5% 0;
+  margin-right: 43px;
 }
 .chat .chatbox .chatform {
   position: relative;
