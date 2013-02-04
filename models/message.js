@@ -16,6 +16,24 @@ messageSchema.statics.countDeletedByUser = function (user, done) {
     this.count({ activado: false, user: user }, done);
 };
 
+messageSchema.methods.get_content = function (user) {
+    var text = this.content;
+
+    // attacks
+    text = text.replace(/&(?!\s)|</g, function (s) { if(s == '&') return '&amp;'; else return '&lt;'; });
+    // links
+    text = text.replace(/https?:\/\/(\S+)/, '');
+    // emoticons
+    text = text.replace(/(:\)|:8|:D|:\(|:O|:P|:cool:|:'\(|:\|)/g, '<span title="$1" class="emoticon"></span>');
+
+    if(user) {
+        text = text
+                .replace('@'+user.username, '<span class="mention">@'+user.username+'</span>');
+    }
+
+    return text;
+};
+
 messageSchema.post('save', function (message) {
     if(message.publish) {
         var User = mongoose.model('User');

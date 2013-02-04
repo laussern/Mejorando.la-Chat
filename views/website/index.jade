@@ -33,7 +33,7 @@ block content
 
                     a(href=message.user.link, target="_blank", title="Ir al perfil del usuario").user= message.user.username
 
-                    p.content= message.content
+                    p.content!= message.get_content(user)
 
                     .time: small= message.datetime.toString('MMMM d, HH:mm')
 
@@ -53,7 +53,7 @@ block content
 
                     a(href=mention.user.link, target="_blank", title="Ir al perfil del usuario").user= mention.user.username
 
-                    p.content= mention.content
+                    p.content!= mention.get_content(user)
 
                     .time: small= mention.datetime.toString('MMMM d, HH:mm')
 
