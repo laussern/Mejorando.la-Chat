@@ -3,11 +3,18 @@ var mongoose = require('mongoose'),
     Feedback = mongoose.model('Feedback');
 
 exports.index = function (req, res, next) {
+    var mentions = [];
+
+    if(req.user) {
+        mentions = Message.find({ activado: true, content: new RegExp('@'+req.user.username, 'i') }, null, { sort: { datetime: -1}, limit: 25 }).populate('user');
+    }
+
     res.render('website/index', {
         user: req.user,
         messages: Message
             .find({ activado: true }, null, { sort: { datetime: -1 }, limit: 25 })
-            .populate('user')
+            .populate('user'),
+        mentions: mentions
     });
 };
 

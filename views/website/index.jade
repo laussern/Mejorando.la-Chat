@@ -46,7 +46,19 @@ block content
                                 a(href="#", target="_blank", data-borrar=message.id).borrar.icon-blocked
 
         .messages#mentions
+            each mention in mentions
+                div(class="message#{ mention.user.admin ? ' destacado' : ''}#{ user && user.username == mention.user.username ? ' sameuser' : ''}")
+                    .avatar: a(href=mention.user.link, target="_blank")
+                        img(src=mention.user.avatar, alt=mention.user.username, width=30, height=30)
 
+                    a(href=mention.user.link, target="_blank", title="Ir al perfil del usuario").user= mention.user.username
+
+                    p.content= mention.content
+
+                    .time: small= mention.datetime.toString('MMMM d, HH:mm')
+
+                    .actions
+                        a(href="#", target="_blank").icon-undo.responder
     footer
         a(href="https://github.com/dual3nigma/Mejorando.la-Chat", target="_blank", title="En Github").icon-github
         if user

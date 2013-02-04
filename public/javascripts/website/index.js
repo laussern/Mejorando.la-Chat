@@ -141,14 +141,6 @@ jQuery(function ($) {
             if(canSound) mentionSnd.play();
 
             $('#mention-btn').addClass('new');
-
-            if(typeof(Storage) !== 'undefined') {
-                if(localStorage.chat_mentions) {
-                    localStorage.chat_mentions += html;
-                } else {
-                    localStorage.chat_mentions = html;
-                }
-            }
         }
     }
 
@@ -225,9 +217,6 @@ jQuery(function ($) {
         return false;
     });
 
-    if(typeof(Storage) !== 'undefined' && localStorage.chat_mentions) {
-        $mentions.append(localStorage.chat_mentions);
-    }
     var mentionSnd = new Audio('sound/mention.wav');
 
     +function () {

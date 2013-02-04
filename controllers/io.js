@@ -94,5 +94,23 @@ module.exports = function (io) {
         }
       });
     });
+
+    socket.on('disconnect', function () {
+      getUserFromHS(hs, function (err, user) {
+        if(err) return err;
+
+        if(user) {
+          user.update({ $set: { online: false }}, function () {});
+        }
+      });
+    });
+
+    getUserFromHS(hs, function (err, user) {
+      if(err) return err;
+
+      if(user) {
+        user.update({ $set: { online: true }}, function () {} );
+      }
+    });
   });
 };

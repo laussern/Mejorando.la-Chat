@@ -41,13 +41,13 @@ exports.feedback = function (req, res, next) {
 
 exports.users = function (req, res, next) {
   User.aggregate(
-    { $match: {pais: { $ne: null}} },
+    { $match: {pais: { $ne: null}, online: true } },
     { $group: { _id: "$pais", count: { $sum: 1}  }},
     function (err, data) {
         if(err) next(err);
 
         res.render('admin/users', {
-          users: User.find(),
+          users: User.find({ online: true }),
           geo: data
         });
   });

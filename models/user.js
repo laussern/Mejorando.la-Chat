@@ -11,7 +11,8 @@ var userSchema = new mongoose.Schema({
   pais: String,
   ip: String,
   activado: { type: Boolean, 'default': true },
-  admin: { type: Boolean, 'default': false }
+  admin: { type: Boolean, 'default': false },
+  online: { type: Boolean, 'default': false }
 });
 
 userSchema.statics.findOrCreate = function (profile, done) {

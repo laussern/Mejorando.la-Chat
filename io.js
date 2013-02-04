@@ -25,16 +25,21 @@ module.exports = function (config, server, sessionStore) {
     io.set('authorization', function (data, accept) {
       if(data.headers.cookie) {
         data.cookie = cookie.parse(data.headers.cookie);
-        data.sessionID = parseCookie(data.cookie[config.session.key], config.session.secret);
 
-        sessionStore.get(data.sessionID,
-          function (err, session) {
-            if(err) return accept(err, false);
+        if(data.cookie[config.session.key]) {
+          data.sessionID = parseCookie(data.cookie[config.session.key], config.session.secret);
 
-            data.session = session;
+          sessionStore.get(data.sessionID,
+            function (err, session) {
+              if(err) return accept(err, false);
 
-            accept(null, true);
-        });
+              data.session = session;
+
+              accept(null, true);
+          });
+        } else {
+          return accept(null, true);
+        }
       } else {
         return accept(null, true);
       }
