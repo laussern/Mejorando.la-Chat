@@ -36,13 +36,13 @@ module.exports = function (config) {
   passport.use(new TwitterStrategy({
       consumerKey: config.twitter.consumerKey,
       consumerSecret: config.twitter.consumerSecret,
-      callbackURL: sche+"://"+config.host+":"+config.port+"/auth/twitter/callback"
+      callbackURL: sche+"://"+config.host+"/auth/twitter/callback"
     }, auth.twitter));
 
   passport.use(new FacebookStrategy({
       clientID: config.facebook.appId,
       clientSecret: config.facebook.appSecret,
-      callbackURL: sche+"://"+config.host+":"+config.port+"/auth/facebook/callback"
+      callbackURL: sche+"://"+config.host+"/auth/facebook/callback"
     }, auth.facebook));
 
   passport.serializeUser(function(user, done) {
