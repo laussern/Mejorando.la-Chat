@@ -31,7 +31,7 @@ module.exports = function (config) {
    * Auth configuration
    */
   var auth = require('./auth'),
-    sche = config.secure ? 'https' : 'http';
+    sche = config.loginsecure ? 'https' : 'http';
 
   passport.use(new TwitterStrategy({
       consumerKey: config.twitter.consumerKey,

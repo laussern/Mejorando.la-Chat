@@ -20,6 +20,7 @@
         "secret": ""
     },
     "secure": false,
+    "loginsecure": false,
     "key": "",
     "cert": "",
     "sentry": "dsn"
