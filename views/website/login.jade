@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    .dialog#login.show
+        .overlay.animated
+        .panel.animated
+            p Para participar necesitas identificarte
+
+            a(href="/auth/facebook").facebook Conectate con
+            a(href="/auth/twitter").twitter Conectate con

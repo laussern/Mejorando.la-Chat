@@ -5,7 +5,7 @@ function is_admin(req, res, next) {
   if(req.user && req.user.admin) {
     next();
   } else {
-    res.redirect('/');
+    res.redirect('/login');
   }
 }
 
@@ -14,9 +14,10 @@ module.exports = function (app, passport) {
   /*
    * Website urls
    */
-  app.get('/', website.index);
-  app.post('/feedback', website.feedback);
-  app.get('/salir', website.salir);
+  app.get('/', is_admin, website.index);
+  app.get('/login', website.login),
+  app.post('/feedback', is_admin, website.feedback);
+  app.get('/salir', is_admin, website.salir);
 
   /*
    * Admin urls

@@ -16,8 +16,12 @@ exports.index = function (req, res, next) {
             .find({ activado: true }, null, { sort: { datetime: -1 }, limit: 25 })
             .populate('user'),
         mentions: mentions,
-        users: User.find({}, null, { sort: { online: -1 }, limit: 10})
+        users: User.find({admin: true}, null, { sort: { online: -1 }, limit: 10})
     });
+};
+
+exports.login = function (req, res, next) {
+    res.render('website/login');
 };
 
 exports.feedback = function (req, res, next) {
