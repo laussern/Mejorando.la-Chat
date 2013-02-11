@@ -140,6 +140,8 @@ jQuery(function ($) {
         var $message = $('<div class="message'+clase+'" id="'+id+'"><div class="avatar"><a href="'+message.user.link+'" target="_blank"><img src="'+message.user.avatar+'" alt="'+message.user.username+'" width="30" height="30" /></a></div><a href="'+message.user.link+'" target="_blank" class="user">'+message.user.username+'</a><p class="content">'+message.content+'</p><div class="time"><small title="'+fecha.toISOString()+'">'+fecha.toString('MMMM d, HH:mm')+'</small></div><div class="actions">'+actions+'</div></div>');
         $messages.prepend($message);
 
+        $message.find('a').oembed(null, oembed_params, oembed_action);
+
         // si tiene una mencion
         if($message.find('.mention').size() > 0) {
             var html = '<div class="message'+clase+'"><div class="avatar"><a href="'+message.user.link+'" target="_blank"><img src="'+message.user.avatar+'" alt="'+message.user.username+'" width="30" height="30" /></a></div><a href="'+message.user.link+'" target="_blank" class="user">'+message.user.username+'</a><p class="content">'+message.content+'</p><div class="time"><small title="'+fecha.toISOString()+'">'+fecha.toString('MMMM d, HH:mm')+'</small></div><div class="actions">'+actions+'</div></div>';
@@ -278,4 +280,14 @@ jQuery(function ($) {
 
         return false;
     });
+
+    var oembed_params = {
+        disallowedProviders: ["embed.ly"],
+        embedMethod: "append",
+        maxHeight: 150 },
+        oembed_action = function (oembedData, provider) {
+            $(this).closest('.content').after('<div class="oembed-container">'+oembedData.code+'</div>');
+        };
+
+    $('.message .content a').oembed(null, oembed_params, oembed_action);
 });

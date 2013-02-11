@@ -116,15 +116,20 @@ a:hover {
 }
 .field {
   background: #515458;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.30);
   font-size: 15px;
   -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
   border-radius: 3px;
   padding: 3px;
   padding-bottom: 30px;
   outline: 0;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
+  -o-box-sizing: border-box;
+  -ms-box-sizing: border-box;
   box-sizing: border-box;
   width: 100%;
 }
@@ -138,9 +143,9 @@ a:hover {
 .users a {
   display: block;
   position: relative;
-  opacity: 0.2;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20);
-  filter: alpha(opacity=20);
+  opacity: 0.2 ;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=20) ;
+  filter: alpha(opacity=20) ;
   font-family: 'icomoon';
   speak: none;
   font-style: normal;
@@ -151,16 +156,16 @@ a:hover {
 }
 .users a img {
   display: block;
-  border: 1px solid rgba(255,255,255,0.5);
+  border: 1px solid rgba(255,255,255,0.50);
 }
 .users a.online {
-  opacity: 1;
+  opacity: 1 ;
   -ms-filter: none;
   filter: none;
 }
 .users a:after {
   content: "\24";
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.70);
   text-align: center;
   width: 32px;
   height: 32px;
@@ -173,12 +178,12 @@ a:hover {
   -o-transition: opacity 0.2 ease-out;
   -ms-transition: opacity 0.2 ease-out;
   transition: opacity 0.2 ease-out;
-  opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  filter: alpha(opacity=0);
+  opacity: 0 ;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+  filter: alpha(opacity=0) ;
 }
 .users a:hover:after {
-  opacity: 1;
+  opacity: 1 ;
   -ms-filter: none;
   filter: none;
 }
@@ -224,7 +229,7 @@ a:hover {
   position: absolute;
   bottom: 0;
   right: 0;
-  background: rgba(61,64,67,0.6) url("/images/website/form-sending.gif") center center no-repeat;
+  background: rgba(61,64,67,0.60) url("/images/website/form-sending.gif") center center no-repeat;
   z-index: 9;
 }
 .chat .chatbox .chatform .publish {
@@ -274,7 +279,7 @@ a:hover {
   padding: 10px 0;
   position: relative;
   overflow: hidden;
-  text-shadow: 0.5px 0.5px rgba(0,0,0,0.4);
+  text-shadow: 0.5px 0.5px rgba(0,0,0,0.40);
   border-left: 7px solid transparent;
   -webkit-transition: background-color 0.5s ease-out;
   -moz-transition: background-color 0.5s ease-out;
@@ -302,6 +307,9 @@ a:hover {
 .chat .messages .message .mention {
   background: #29b1ff;
   -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
   border-radius: 3px;
   display: inline-block;
   margin-top: 5px;
@@ -320,7 +328,7 @@ a:hover {
 }
 .chat .messages .message .avatar img {
   display: block;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255,255,255,0.20);
 }
 .chat .messages .message .user {
   font-weight: bold;
@@ -335,9 +343,9 @@ a:hover {
   -o-transition: opacity 0.2s ease-out;
   -ms-transition: opacity 0.2s ease-out;
   transition: opacity 0.2s ease-out;
-  opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  filter: alpha(opacity=0);
+  opacity: 0 ;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+  filter: alpha(opacity=0) ;
 }
 .chat .messages .message .time small {
   font-size: 12px;
@@ -358,7 +366,7 @@ a:hover {
   color: #fff;
 }
 .chat .messages .message .icon-undo {
-  background: rgba(0,0,0,0.7);
+  background: rgba(0,0,0,0.70);
   text-align: center;
   width: 32px;
   height: 32px;
@@ -371,20 +379,20 @@ a:hover {
   -o-transition: opacity 0.2 ease-out;
   -ms-transition: opacity 0.2 ease-out;
   transition: opacity 0.2 ease-out;
-  opacity: 0;
-  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-  filter: alpha(opacity=0);
+  opacity: 0 ;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+  filter: alpha(opacity=0) ;
 }
 .chat .messages .message .icon-undo:hover {
   text-decoration: none;
 }
 .chat .messages .message .icon-undo:hover {
-  opacity: 1;
+  opacity: 1 ;
   -ms-filter: none;
   filter: none;
 }
 .chat .messages .message:hover .time {
-  opacity: 1;
+  opacity: 1 ;
   -ms-filter: none;
   filter: none;
 }
@@ -406,10 +414,12 @@ a:hover {
   display: box;
   -webkit-box-pack: center;
   -moz-box-pack: center;
+  -o-box-pack: center;
   -ms-box-pack: center;
   box-pack: center;
   -webkit-box-align: center;
   -moz-box-align: center;
+  -o-box-align: center;
   -ms-box-align: center;
   box-align: center;
 }
@@ -420,13 +430,16 @@ a:hover {
   position: absolute;
   bottom: 0;
   right: 0;
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.50);
   cursor: pointer;
 }
 .dialog .panel {
   background: #3d4043;
   padding: 20px 15px;
   -webkit-box-shadow: 3px 3px 0 #272b2e;
+  -moz-box-shadow: 3px 3px 0 #272b2e;
+  -o-box-shadow: 3px 3px 0 #272b2e;
+  -ms-box-shadow: 3px 3px 0 #272b2e;
   box-shadow: 3px 3px 0 #272b2e;
   position: relative;
 }
@@ -489,7 +502,7 @@ a:hover {
   position: absolute;
   bottom: 0;
   right: 0;
-  background: rgba(61,64,67,0.6) url("/images/website/form-sending.gif") center center no-repeat;
+  background: rgba(61,64,67,0.60) url("/images/website/form-sending.gif") center center no-repeat;
   z-index: 9;
 }
 #encuesta .panel .question {
@@ -672,39 +685,39 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 @-webkit-keyframes fadeIn {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 
   100% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 }
 @-moz-keyframes fadeIn {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 
   100% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 }
 @-o-keyframes fadeIn {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 
   100% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
@@ -721,41 +734,41 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 @-webkit-keyframes fadeOut {
   0% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 }
 @-moz-keyframes fadeOut {
   0% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 }
 @-o-keyframes fadeOut {
   0% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 }
 .fadeOut {
@@ -770,14 +783,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 @-webkit-keyframes bounceInDown {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -webkit-transform: translateY(-2000px);
   }
 
   60% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -webkit-transform: translateY(30px);
@@ -793,14 +806,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 @-moz-keyframes bounceInDown {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -moz-transform: translateY(-2000px);
   }
 
   60% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -moz-transform: translateY(30px);
@@ -816,14 +829,14 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 }
 @-o-keyframes bounceInDown {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -o-transform: translateY(-2000px);
   }
 
   60% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -o-transform: translateY(30px);
@@ -853,16 +866,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   }
 
   20% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -webkit-transform: translateY(20px);
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -webkit-transform: translateY(-2000px);
   }
 }
@@ -872,16 +885,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   }
 
   20% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -moz-transform: translateY(20px);
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -moz-transform: translateY(-2000px);
   }
 }
@@ -891,16 +904,16 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
   }
 
   20% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -o-transform: translateY(20px);
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -o-transform: translateY(-2000px);
   }
 }
@@ -987,141 +1000,144 @@ you can use the generic selector below, but it's slower:
 .icon-mention:before {
   content: "@";
 }
+.oembed-container {
+  margin: 10px;
+}
 @-moz-keyframes fadeIn {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 
   100% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 }
 @-webkit-keyframes fadeIn {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 
   100% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 }
 @-o-keyframes fadeIn {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 
   100% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 }
 @-ms-keyframes fadeIn {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 
   100% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 }
 @keyframes fadeIn {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 
   100% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 }
 @-moz-keyframes fadeOut {
   0% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 }
 @-webkit-keyframes fadeOut {
   0% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 }
 @-o-keyframes fadeOut {
   0% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 }
 @-ms-keyframes fadeOut {
   0% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 }
 @keyframes fadeOut {
   0% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
   }
 }
 @-moz-keyframes bounceInDown {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -webkit-transform: translateY(-2000px);
     -moz-transform: translateY(-2000px);
     -o-transform: translateY(-2000px);
@@ -1130,7 +1146,7 @@ you can use the generic selector below, but it's slower:
   }
 
   60% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -webkit-transform: translateY(30px);
@@ -1158,9 +1174,9 @@ you can use the generic selector below, but it's slower:
 }
 @-webkit-keyframes bounceInDown {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -webkit-transform: translateY(-2000px);
     -moz-transform: translateY(-2000px);
     -o-transform: translateY(-2000px);
@@ -1169,7 +1185,7 @@ you can use the generic selector below, but it's slower:
   }
 
   60% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -webkit-transform: translateY(30px);
@@ -1197,9 +1213,9 @@ you can use the generic selector below, but it's slower:
 }
 @-o-keyframes bounceInDown {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -webkit-transform: translateY(-2000px);
     -moz-transform: translateY(-2000px);
     -o-transform: translateY(-2000px);
@@ -1208,7 +1224,7 @@ you can use the generic selector below, but it's slower:
   }
 
   60% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -webkit-transform: translateY(30px);
@@ -1236,9 +1252,9 @@ you can use the generic selector below, but it's slower:
 }
 @-ms-keyframes bounceInDown {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -webkit-transform: translateY(-2000px);
     -moz-transform: translateY(-2000px);
     -o-transform: translateY(-2000px);
@@ -1247,7 +1263,7 @@ you can use the generic selector below, but it's slower:
   }
 
   60% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -webkit-transform: translateY(30px);
@@ -1275,9 +1291,9 @@ you can use the generic selector below, but it's slower:
 }
 @keyframes bounceInDown {
   0% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -webkit-transform: translateY(-2000px);
     -moz-transform: translateY(-2000px);
     -o-transform: translateY(-2000px);
@@ -1286,7 +1302,7 @@ you can use the generic selector below, but it's slower:
   }
 
   60% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -webkit-transform: translateY(30px);
@@ -1322,7 +1338,7 @@ you can use the generic selector below, but it's slower:
   }
 
   20% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -webkit-transform: translateY(20px);
@@ -1333,9 +1349,9 @@ you can use the generic selector below, but it's slower:
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -webkit-transform: translateY(-2000px);
     -moz-transform: translateY(-2000px);
     -o-transform: translateY(-2000px);
@@ -1353,7 +1369,7 @@ you can use the generic selector below, but it's slower:
   }
 
   20% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -webkit-transform: translateY(20px);
@@ -1364,9 +1380,9 @@ you can use the generic selector below, but it's slower:
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -webkit-transform: translateY(-2000px);
     -moz-transform: translateY(-2000px);
     -o-transform: translateY(-2000px);
@@ -1384,7 +1400,7 @@ you can use the generic selector below, but it's slower:
   }
 
   20% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -webkit-transform: translateY(20px);
@@ -1395,9 +1411,9 @@ you can use the generic selector below, but it's slower:
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -webkit-transform: translateY(-2000px);
     -moz-transform: translateY(-2000px);
     -o-transform: translateY(-2000px);
@@ -1415,7 +1431,7 @@ you can use the generic selector below, but it's slower:
   }
 
   20% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -webkit-transform: translateY(20px);
@@ -1426,9 +1442,9 @@ you can use the generic selector below, but it's slower:
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -webkit-transform: translateY(-2000px);
     -moz-transform: translateY(-2000px);
     -o-transform: translateY(-2000px);
@@ -1446,7 +1462,7 @@ you can use the generic selector below, but it's slower:
   }
 
   20% {
-    opacity: 1;
+    opacity: 1 ;
     -ms-filter: none;
     filter: none;
     -webkit-transform: translateY(20px);
@@ -1457,9 +1473,9 @@ you can use the generic selector below, but it's slower:
   }
 
   100% {
-    opacity: 0;
-    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
-    filter: alpha(opacity=0);
+    opacity: 0 ;
+    -ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0) ;
+    filter: alpha(opacity=0) ;
     -webkit-transform: translateY(-2000px);
     -moz-transform: translateY(-2000px);
     -o-transform: translateY(-2000px);
@@ -1467,3 +1483,4 @@ you can use the generic selector below, but it's slower:
     transform: translateY(-2000px);
   }
 }
+
