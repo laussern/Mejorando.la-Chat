@@ -108,7 +108,7 @@ jQuery(function ($) {
         // attacks
         text = text.replace(/&(?!\s)|</g, function (s) { if(s == '&') return '&amp;'; else return '&lt;'; });
         // links
-        text = text.replace(/https?:\/\/(\S+)/, '');
+        text = text.replace(/http:\/\/(\S+)/, '<a href="http://$1" target="_blank">$1</a>');
         // emoticons
         text = text.replace(/(:\)|:8|:D|:\(|:O|:P|:cool:|:'\(|:\|)/g, '<span title="$1" class="emoticon"></span>');
 
