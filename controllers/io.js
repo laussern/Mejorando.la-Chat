@@ -11,7 +11,7 @@ function getUserFromHS(hs, callback) {
 }
 
 module.exports = function (io) {
-  io.sockets.on('connection', function (socket) {
+  io.of('/hub').on('connection', function (socket) {
     var hs = socket.handshake;
 
     socket.on('send message', function (message) {
@@ -90,7 +90,7 @@ module.exports = function (io) {
         if(err) return err;
 
         if(user && user.admin) {
-          io.sockets.emit('encuesta', questions);
+          io.of('/hub').emit('encuesta', questions);
         }
       });
     });

@@ -12,7 +12,7 @@ jQuery(function ($) {
         $panel   = $login.find('.panel');
 
     // socket elements
-    var socket = io.connect('/');
+    var socket = io.connect('/hub');
     
     // prompt for login
     if($login.size() > 0) {

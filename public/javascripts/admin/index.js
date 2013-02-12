@@ -1,6 +1,6 @@
 jQuery(function ($) {
 
-    var socket = io.connect('/');
+    var socket = io.connect('/hub');
 
     $('#publish').click(function () {
         if(confirm('¿ESTAS SEGURO DE QUE DESEAS MANDAR AL VIVO LA ENCUESTA?')) {
