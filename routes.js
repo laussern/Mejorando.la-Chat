@@ -1,6 +1,8 @@
+//Importar de Controllers Admin y Website
 var website = require('./controllers/website'),
     admin = require('./controllers/admin');
 
+//Comprobacion de administrador
 function is_admin(req, res, next) {
   if(req.user && req.user.admin) {
     next();
@@ -12,14 +14,14 @@ function is_admin(req, res, next) {
 module.exports = function (app, passport) {
 
   /*
-   * Website urls
+   * Urls del Website
    */
   app.get('/', website.index);
   app.post('/feedback', website.feedback);
   app.get('/salir', website.salir);
 
   /*
-   * Admin urls
+   * Urls de administracion
    */
   app.get('/admin',          is_admin, admin.index);
   app.get('/admin/feedback', is_admin, admin.feedback);
@@ -27,19 +29,19 @@ module.exports = function (app, passport) {
 
   app.post('/admin/update',  is_admin, admin.update);
   /*
-   * Passport urls
+   * Urls de autenticacion
    */
-  // Twitter
+  // Auth Twitter
   app.get('/auth/twitter', passport.authenticate('twitter'));
   app.get('/auth/twitter/callback',
     passport.authenticate('twitter', { successRedirect: '/',
                                        failureRedirect: '/' }));
-  // Facebook
+  // Auth Facebook
   app.get('/auth/facebook', passport.authenticate('facebook'));
   app.get('/auth/facebook/callback',
     passport.authenticate('facebook', { successRedirect: '/',
                                        failureRedirect: '/' }));
 
-
+//Todo lo demas 404 NOT FOUND
   app.all('*', website.notFound);
 };

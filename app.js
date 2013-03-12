@@ -28,7 +28,7 @@ module.exports = function (config) {
   require('./models/feedback');
 
   /**
-   * Auth configuration
+   * Inicio Configuracion Auth0
    */
   var auth = require('./auth'),
     sche = config.loginsecure ? 'https' : 'http';
@@ -50,14 +50,16 @@ module.exports = function (config) {
   });
 
   passport.deserializeUser(auth.user);
-
+  /**
+   * Fin Configuracion Auth0
+   */
   /*
-   * Session configurations
+   * Configuracion de sesion
    */
   var sessionStore = new (require('connect-mongo')(express))({ db: config.db.name });
 
   /*
-   * App configuration
+   * Configuracion de la app
    */
   var app = express();
 
@@ -82,6 +84,7 @@ module.exports = function (config) {
     app.use(passport.initialize());
     app.use(passport.session());
 
+    //Establece apartir de la ip su localizacion y la guarda en la informacion del usuario
     app.use(function (req, res, next) {
       if(req.user && !req.user.ip) {
         request({ url: 'https://mejorando.la/locateme?ip='+req.ip },
@@ -119,6 +122,6 @@ module.exports = function (config) {
    * Routes
    */
   require('./routes')(app, passport);
-
+  // Retorna la app  y los datos de la sesion
   return { app: app, sessionStore: sessionStore };
 };
