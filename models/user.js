@@ -27,4 +27,6 @@ userSchema.statics.findOrCreate = function (profile, done) {
   });
 };
 
+/* Guardamos modelo de mongoose */
+
 var User = mongoose.model('User', userSchema);
