@@ -8,10 +8,39 @@ exports.index = function (req, res, next) {
 };
 
 exports.feedback = function (req, res, next) {
+  Feedback.mapReduce({
+    map: function () { emit(this.datetime.getFullYear() + '-' + (this.datetime.getMonth() + 1) + '-' + this.datetime.getDate(), 1); },
+    reduce: function (k, vals) { return vals.length; }
+  }, function (err, dates) {
+    if(err) next(err);
+
+    res.render('admin/feedback', {
+      dates: dates
+    });
+  });
+};
+
+exports.feedback_single = function (req, res, next) {
+  var parts = req.params.date.split('-');
+
+  if(parts.length != 3) return next('No son suficientes parametros');
+
+  var year, month, day, start, end;
+
+  year = parseInt(parts[0], 10);
+  month = parseInt(parts[1], 10) - 1 ;
+  day = parseInt(parts[2], 10);
+
+  start = new Date(year, month, day);
+  end = new Date(year, month, day + 1);
+
   Feedback.aggregate({
     $unwind: "$questions"
   }, {
-    $match: { "questions.content": "¿Te gustó el programa?"}
+    $match: {
+      "questions.content": "¿Te gustó el programa?",
+      "datetime": { $gt: start, $lt: end}
+    }
   }, {
     $group: {
       _id: "$questions.answer",
@@ -31,8 +60,8 @@ exports.feedback = function (req, res, next) {
       dislikes = r[1].count;
     }
 
-    res.render('admin/feedback', {
-      comments: Feedback.find({ "comment": {$ne: "" } }, null, { sort: { datetime: -1 }}).populate('user'),
+    res.render('admin/feedback_single', {
+      comments: Feedback.find({ "comment": {$ne: "" }, "datetime": { $gte: start, $lt: end} }, null, { sort: { datetime: -1 }}).populate('user'),
       likes: likes,
       dislikes: dislikes
     });
