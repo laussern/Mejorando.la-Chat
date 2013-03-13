@@ -1,24 +1,24 @@
-
 /**
  * Module dependencies.
  */
 
+//Importamos express y require
 var express = require('express'),
     request = require('request'),
     //toobusy = require('toobusy'),
-    // database
+    // Database Mongodb
     mongoose = require('mongoose'),
-    // authentication
+    // Autenticacion Facebook Twitter
     passport = require('passport'),
     TwitterStrategy = require('passport-twitter').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy;
-
+//Mongoose para express
 require('express-mongoose');
 require('datejs/lib/date-es-ES');
 
 module.exports = function (config) {
   /**
-   * Database configuration
+   * Configuracion de la database
    */
   mongoose.connect('mongodb://localhost/' + config.db.name );
 
@@ -72,15 +72,15 @@ module.exports = function (config) {
       if(toobusy()) res.status(500).sendfile(__dirname+'/views/overload.html');
       else next();
     });*/
-
+    //Directorio estatico y favicon
     app.use(express.static(__dirname + '/public'));
     app.use(express.favicon(__dirname + '/public/images/favicon.ico'));
-
+    //Peticiones POST para Express
     app.use(express.bodyParser());
     app.use(express.methodOverride());
     app.use(express.cookieParser(config.cookie.secret));
     app.use(express.session({secret: config.session.secret, key: config.session.key, store: sessionStore }));
-
+    //Importamos passport para autenticacion
     app.use(passport.initialize());
     app.use(passport.session());
 
@@ -102,7 +102,7 @@ module.exports = function (config) {
         next();
       }
     });
-
+    //Importa router de la app
     app.use(app.router);
   });
 
