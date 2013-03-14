@@ -6,15 +6,15 @@ jQuery(function ($) {
         $messages = $('#messages'),
         $mentions = $('#mentions'),
         $chat     = $('.chat'),
-        // auth elements
+        // Elementos para auth
         $login   = $('#login'),
         $overlay = $login.find('.overlay'),
         $panel   = $login.find('.panel');
 
-    // socket elements
+    // Coneccion a socket
     var socket = io.connect('/');
     
-    // prompt for login
+    // Login
     if($login.size() > 0) {
         $text.focus(function () {
             $login.addClass('show');
@@ -34,7 +34,7 @@ jQuery(function ($) {
             }, 1010);
         });
     }
-
+    /* Evento click enviar mensaje */
     $chatform.submit(function () {
         var text = $text.val();
 
@@ -55,20 +55,21 @@ jQuery(function ($) {
 
         return false;
     });
-
+    /* Enciendo el socket y rendereo el mensaje */
     socket.on('send message', function (message) {
         render(message);
     });
-
+    /* Elimino el mensaje */
     socket.on('message deleted', function (id) {
         $('#message-'+id).remove();
     });
-
+    /* Socket para encuesta */
     socket.on('encuesta', function (questions) {
+        /* si esta vacio no haga nada*/
         if($('#encuesta').size() <= 0) return;
         
         var html = '';
-
+        /* Creacion del html */
         for(var i = 1; i <= questions.length; i++) {
             html += '\
             <div class="question">\
@@ -86,18 +87,19 @@ jQuery(function ($) {
                 </p>\
             </div>';
         }
-
+        /* Cuando este listo guarde en base de datos */
         $('#encuesta .questions').html(html).trigger('ready');
     });
-
+    /* renderizado de mensaje */
     function render(message) {
+        /* recojo el id del mensaje y fecha de envio */
         var id = 'message-'+(typeof message.id == 'undefined' ? message.datetime : message.id);
-
+        /* if esta vacio no haga nada */
         if($('#'+id).size() > 0) return;
-
+        /* Rexoje el mensaje */
         var text = message.content;
 
-        // attacks
+        // Ataques
         text = text.replace(/&(?!\s)|</g, function (s) { if(s == '&') return '&amp;'; else return '&lt;'; });
         // links
         text = text.replace(/https?:\/\/(\S+)/, '');
@@ -106,7 +108,7 @@ jQuery(function ($) {
 
         message.content = text;
 
-
+        /* si es mencionado */
         var actions = '', clase = '';
         if(typeof user != 'undefined') {
             if(user.username != message.user.username) {
@@ -122,13 +124,13 @@ jQuery(function ($) {
             if(message.user.staff) {
                 clase += ' destacado';
             }
-
+            /* añadir al mensaje un link al usuario mencionado */
             message.content = message.content
                     .replace('@'+user.username, '<span class="mention">@'+user.username+'</span>');
         }
-
+        /* Fecha de envio */
         var fecha = new Date(message.datetime);
-
+        /* Html del mensaje */
         var $message = $('<div class="message'+clase+'" id="'+id+'"><div class="avatar"><a href="'+message.user.link+'" target="_blank"><img src="'+message.user.avatar+'" alt="'+message.user.username+'" width="30" height="30" /></a></div><a href="'+message.user.link+'" target="_blank" class="user">'+message.user.username+'</a><p class="content">'+message.content+'</p><div class="time"><small title="'+fecha.toISOString()+'">'+fecha.toString('MMMM d, HH:mm')+'</small></div><div class="actions">'+actions+'</div></div>');
         $messages.prepend($message);
 
@@ -143,7 +145,7 @@ jQuery(function ($) {
             $('#mention-btn').addClass('new');
         }
     }
-
+    /* evento click en $messages */
     $messages.on('click', '.borrar',  function () {
         var $self = $(this);
 
@@ -158,7 +160,7 @@ jQuery(function ($) {
 
         return false;
     });
-
+    /* borrar mensajes */
     $messages.on('click', '.borrar.ready', function () {
         var $self = $(this),
             $message = $self.closest('.message');
@@ -169,7 +171,7 @@ jQuery(function ($) {
 
         return false;
     });
-
+    /* metion */
     $chat.on('click', '.responder',  function () {
         var $self = $(this);
 
@@ -186,7 +188,7 @@ jQuery(function ($) {
 
         return false;
     });
-
+    /* menu */
     var $menu = $('#user-nav');
     $menu.on('click', '#mention-btn', function () {
         var $self = $(this);
@@ -201,7 +203,7 @@ jQuery(function ($) {
 
         return false;
     });
-
+    /* sonido al tener mention */
     var canSound = true;
     $menu.on('click', '#sound-btn', function () {
         var $self = $(this);
@@ -218,7 +220,7 @@ jQuery(function ($) {
     });
 
     var mentionSnd = new Audio('sound/mention.wav');
-
+    /* otros adds */
     +function () {
         var $encuesta = $('#encuesta'),
             $overlay = $encuesta.find('.overlay'),

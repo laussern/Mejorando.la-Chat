@@ -1,14 +1,14 @@
 jQuery(function ($) {
-
+    /* coneccion socket */
     var socket = io.connect('/');
-
+    /* confirmacion de encuesta */
     $('#publish').click(function () {
         if(confirm('¿ESTAS SEGURO DE QUE DESEAS MANDAR AL VIVO LA ENCUESTA?')) {
             socket.emit('push encuesta', []);
         }
     });
 
-
+    /* Guardar usuario admin */
     $('.guardar').click(function () {
         var $self = $(this),
             $user = $self.closest('.user'),
@@ -20,7 +20,7 @@ jQuery(function ($) {
     });
 
 });
-
+/* Google */
 google.load('visualization', '1', {'packages': ['corechart', 'geochart']});
 
 google.setOnLoadCallback(function () {
@@ -73,6 +73,7 @@ google.setOnLoadCallback(function () {
         chart2.draw(data2, options);
     }
 });
+/* Google */
 
 /*
 google.load('visualization', '1', {'packages': ['geochart']});
