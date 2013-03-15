@@ -20,7 +20,7 @@ jQuery(function ($) {
     });
 
 });
-/* Google */
+/*  Google chart API */
 google.load('visualization', '1', {'packages': ['corechart', 'geochart']});
 
 google.setOnLoadCallback(function () {
@@ -73,7 +73,7 @@ google.setOnLoadCallback(function () {
         chart2.draw(data2, options);
     }
 });
-/* Google */
+/*  Google chart API */
 
 /*
 google.load('visualization', '1', {'packages': ['geochart']});
