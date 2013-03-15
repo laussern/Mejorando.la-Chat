@@ -105,14 +105,14 @@ module.exports = function (config) {
     //Importa router de la app
     app.use(app.router);
   });
-
+    //Permite que varios procesos de nodejs compartan la conexion tcp
   app.configure('production', function () {
     app.use(require('raven').middleware.express(config.sentry_dsn));
     app.use(function (err, req, res, next) {
       res.status(500).sendfile(__dirname+'/views/500.html');
     });
   });
-
+    //Permite establecer parametros de configuracion para entorno de desarrollo y produccion
   app.configure('development', function(){
     app.use(express.logger('dev'));
     app.use(express.errorHandler());
