@@ -2,8 +2,7 @@
 var fs = require('fs'),
 	cluster = require('cluster'),
 	config = require('./config');
-
-
+//Permite crear una red de procesos compartidos con todos los servidores
 if(cluster.isMaster) {
 	for(var i = 0; i < require('os').cpus().length; i++) {
 		cluster.fork();
