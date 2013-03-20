@@ -1,5 +1,6 @@
+/* Importamos base de datos mongodb con mongoose*/
 var mongoose = require('mongoose');
-
+/* Tomamos todos los datos de usuario para guardarlos en base de datos */
 var userSchema = new mongoose.Schema({
   username: { type: String, unique: true, required: true },
   avatar: String,
@@ -14,7 +15,7 @@ var userSchema = new mongoose.Schema({
   admin: { type: Boolean, 'default': false },
   online: { type: Boolean, 'default': false }
 });
-
+/* Si todo sale bien creamos el perfil del usuario y lo guardamos */
 userSchema.statics.findOrCreate = function (profile, done) {
   this.findOne({ redId: profile.redId }, function (err, user) {
     if(err) return done(err);
@@ -25,5 +26,7 @@ userSchema.statics.findOrCreate = function (profile, done) {
     user.save(done);
   });
 };
+
+/* Guardamos modelo de mongoose */
 
 var User = mongoose.model('User', userSchema);

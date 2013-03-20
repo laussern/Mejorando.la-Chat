@@ -1,8 +1,8 @@
+//Importamos fs, cluster y ./config
 var fs = require('fs'),
 	cluster = require('cluster'),
 	config = require('./config');
-
-
+//Permite crear una red de procesos compartidos con todos los servidores
 if(cluster.isMaster) {
 	for(var i = 0; i < require('os').cpus().length; i++) {
 		cluster.fork();
@@ -14,23 +14,24 @@ if(cluster.isMaster) {
 		console.log('worker restarted');
 	});
 } else {
-	// aplication
+	//Agarran la aplicacion y la guardan junto a la configuracion
+	//Agarran la informacion de la sesion y la guardan en sessionStore
 	var app = require('./app')(config),
 		sessionStore = app.sessionStore;
-
+	//Tomamos la app
 	app = app.app;
 
 	/*
-	* Server configuration
+	* Configuracion del server
 	*/
 	var server = config.secure ? require('https').createServer({key: fs.readFileSync(config.key).toString(),
       cert: fs.readFileSync(config.cert).toString()}, app) : require('http').createServer(app);
 
-	// io
+	// Importamos io con las funciones que necesitamos
 	require('./io')(config, server, sessionStore);
 
 	/*
-	* Bootstrap
+	* Puerto de escucha
 	*/
 	server.listen(config.port, function(){
 		console.log("Mejorando.la Chat server listening on port ");
