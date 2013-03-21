@@ -27,6 +27,7 @@ module.exports = function (app, passport) {
   app.get('/admin/feedback', is_admin, admin.feedback);
   app.get('/admin/feedback/:date', is_admin, admin.feedback_single);
   app.get('/admin/users',    is_admin, admin.users);
+  app.get('/admin/socketReport', is_admin, admin.socketReport);
 
   app.post('/admin/update',  is_admin, admin.update);
   /*

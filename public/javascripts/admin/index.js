@@ -72,7 +72,57 @@ google.setOnLoadCallback(function () {
         var chart2 = new google.visualization.GeoChart($geo.get(0));
         chart2.draw(data2, options);
     }
+
+    var $socketReport = $('#socketReport');
+
+    if($socketReport.size() > 0) {
+        $('.graph').css({'width':'30%',"float":"left"});
+
+        var $sockets  = $('#sockets');
+        var $messages = $('#messages');
+        var $cpuLoad  = $('#cpuLoad');
+
+
+        var socketReport = JSON.parse($('#socketReport').attr('data-values')).reverse();
+
+        renderLineGraph(socketReport, $sockets , "connectedSockets"             , "Connected sockets");
+        renderLineGraph(socketReport, $messages, "cpuLoad"                      , "CPU load");
+        renderLineGraph(socketReport, $cpuLoad , "messagesBroadcastedPerMinute" , "Messages broadcasted per minute");
+    }    
 });
+
+window.renderLineGraph = function(data, target, keyName, label){
+    // Connected Sockets report;
+    var connectedSockets = data.map(function(item){
+        console.log(item);
+        return [item.datetime ,item[keyName]];
+    });
+    connectedSockets.unshift(['data', label]);
+
+    var data = google.visualization.arrayToDataTable(connectedSockets);
+
+    // Create and draw the visualization.
+    new google.visualization.LineChart( target.get(0) )
+     .draw(data, {
+        backgroundColor: 'transparent',
+        width:"30%", 
+        height:400,
+        hAxis: {
+            textStyle : {
+                color : "transparent"
+            }
+        },
+        vAxis: {
+            textStyle : {
+                color : "white"
+            }
+        },
+        legend : {
+            textStyle: {color: '#ddd'}
+        }            
+    });
+}
+
 /*  Google chart API */
 
 /*

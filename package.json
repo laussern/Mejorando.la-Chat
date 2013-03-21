@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "express": "3.0.4",
-    "jade": "*",
+    "jade": "0.28.2",
     "connect": "2.7.1",
     "connect-mongo": "0.2.0",
     "cookie": "0.0.5",
@@ -16,7 +16,7 @@
     "passport": "0.1.15",
     "passport-facebook": "0.1.4",
     "passport-twitter": "0.1.4",
-    "socket.io": "0.9.11",
+    "socket.io": "0.9.13",
     "express-mongoose": "0.1.0 ",
     "request": "2.12.0",
     "raven": "0.4.5",

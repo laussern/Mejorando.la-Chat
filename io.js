@@ -62,5 +62,5 @@ module.exports = function (config, server, sessionStore) {
     io.set('transports', ['websocket']);
   });
 
-  require('./controllers/io')(io);
+  require('./controllers/io')(io, process);
 };

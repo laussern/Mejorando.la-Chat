@@ -26,6 +26,7 @@ module.exports = function (config) {
   require('./models/user');
   require('./models/message');
   require('./models/feedback');
+  require('./models/report');
 
   /**
    * Inicio Configuracion Auth0

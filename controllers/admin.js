@@ -1,6 +1,7 @@
 var mongoose = require('mongoose'),
     Message = mongoose.model('Message'),
     Feedback = mongoose.model('Feedback'),
+    Report = mongoose.model('Report'),
     User = mongoose.model('User');
 
 exports.index = function (req, res, next) {
@@ -96,3 +97,14 @@ exports.update = function (req, res, next) {
 
     res.send('OK');
 };
+
+exports.socketReport = function(req, res, next) {
+  Report.find()
+   .limit(60)
+   .sort('-datetime')
+  .exec(function(err, reports){
+    res.render('admin/socketReport', {
+      sockets: reports
+    });    
+  });
+}

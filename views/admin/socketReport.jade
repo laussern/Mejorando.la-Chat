@@ -1,0 +1,10 @@
+extends layout
+
+block body
+	h2
+		span.icon-users
+		| sockets
+	#socketReport(data-values=sockets)
+		#sockets.graph
+		#messages.graph
+		#cpuLoad.graph

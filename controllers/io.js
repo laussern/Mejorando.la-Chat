@@ -3,16 +3,22 @@ var mongoose = require('mongoose'),
     User = mongoose.model('User');
 
 function getUserFromHS(hs, callback) {
-  if(hs.session && hs.session.passport.user) {
+  if(hs && hs.session && hs.session.passport.user) {
       User.findById(hs.session.passport.user, callback);
   } else {
-    callback(null, null);
+    callback(true, null);
   }
 }
 
-module.exports = function (io) {
+module.exports = function (io, process) {
   io.sockets.on('connection', function (socket) {
+    process.send({type:'user connected', pid : process.pid, connectedUsers : Object.keys(io.sockets.sockets).length});
+
     var hs = socket.handshake;
+
+    socket.on('disconnect', function(data){
+      process.send({type:'user disconected', pid : process.pid, connectedUsers : Object.keys(io.sockets.sockets).length});      
+    });
 
     socket.on('send message', function (message) {
         getUserFromHS(hs, function (err, user) {
@@ -44,6 +50,7 @@ module.exports = function (io) {
 
               socket.emit('message sent', msg);
               socket.broadcast.emit('send message', msg);
+              process.send({type:'broadcast', pid : process.pid});
             });
           }
         });
@@ -66,6 +73,7 @@ module.exports = function (io) {
                     if(err) return err;
 
                     socket.broadcast.emit('message deleted', id);
+                    process.send({type:'broadcast', pid : process.pid});
                 });
 
                 // no bloquear a un administrador o a un usuario ya buscado
