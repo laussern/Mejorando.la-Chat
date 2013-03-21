@@ -34,6 +34,16 @@ jQuery(function ($) {
             }, 1010);
         });
     }
+
+    $('#login .facebook').click(function(e){
+        window.top.location = "https://chat.mejorando.la/auth/facebook";
+        e.preventDefault();
+    });
+
+    $('#login .twitter').click(function(e){
+        window.top.location = "https://chat.mejorando.la/auth/twitter";
+        e.preventDefault();
+    });    
     /* Evento click enviar mensaje */
     $chatform.submit(function () {
         var text = $text.val();
