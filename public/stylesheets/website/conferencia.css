@@ -13,6 +13,7 @@ footer a:hover{color:#000}
 .chat .messages .message .avatar img{border-color:#ececec}
 .chat .messages .message .mention{background-color:#5fa8ae;color:#fff;padding:0 3px;border-radius:3px}
 .chat .messages .message .responder{background-color:rgba(85,84,82,0.7)}
+.chat .messages .message .borrar:hover{color:#000}
 #login .overlay{background-color:rgba(228,227,225,0.5)}
 #login .panel{background-color:#f7f7f5;box-shadow:4px 4px 0 #888;}
 #login .panel a{color:#fff}
