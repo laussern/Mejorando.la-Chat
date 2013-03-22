@@ -1,75 +1,18 @@
-body {
-  background-color: #f7f7f5;
-}
-body,
-input,
-textarea,
-button,
-a {
-  color: #555452;
-}
-::selection {
-  background-color: #f5e00d;
-}
-.chat .chatbox .chatform.sending:after {
-  background-color: rgba(247,247,245,0.6);
-  background-image: url("/images/conferencia/form-sending.gif");
-}
-.chat .chatbox .chatform .publish {
-  background-color: #f5e00d;
-  background-image: none;
-  padding-left: 20px;
-  bottom: 1px;
-  right: 1px;
-}
-.chat .chatbox .chatform .publish:before {
-  content: " ";
-  position: absolute;
-  left: -20px;
-  top: 0;
-  border-right: 20px solid #f5e00d;
-  border-top: 27px solid transparent;
-}
-.chat .chatbox .chatform input[type="text"] {
-  background-color: #ececec;
-  box-shadow: inset 0 0 7px rgba(0,0,0,0.1);
-  border-color: #a5a5a3;
-}
-.chat .messages .message.sameuser {
-  background-color: #ececec;
-  border-color: #f5e00d;
-}
-.chat .messages .message.destacado .avatar:after {
-  background-image: url("/images/conferencia/staff.png");
-}
-.chat .messages .message.destacado .avatar img {
-  border-color: #555452;
-}
-.chat .messages .message .avatar img {
-  border-color: #ececec;
-}
-.chat .messages .message .mention {
-  background-color: #565455;
-  color: #fff;
-  padding: 0 3px;
-  border-radius: 3px;
-}
-.chat .messages .message .responder {
-  background-color: rgba(85,84,82,0.7);
-}
-.chat .messages .message .borrar {
-  background-image: url("/images/conferencia/borrar.png");
-}
-#login .overlay {
-  background-color: rgba(228,227,225,0.5);
-}
-#login .panel {
-  background-color: #f7f7f5;
-  box-shadow: 4px 4px 0 #888;
-}
-#login .panel a {
-  color: #fff;
-}
-.emoticon {
-  background-image: url("/images/conferencia/emoticons.png");
-}
+body{background-color:#f7f7f5}
+body,input,textarea,button,a{color:#555452}
+::selection{background-color:#5fa8ae}
+.chat .chatbox .chatform.sending:after{background-color:rgba(247,247,245,0.6);background-image:url("/images/conferencia/form-sending.gif")}
+.chat .chatbox .chatform .publish{background-color:#5fa8ae;background-image:none;color:#fff;padding-left:20px;bottom:1px;right:1px;}
+.chat .chatbox .chatform .publish:before{content:" ";position:absolute;left:-20px;top:0;bottom:0;border-right:20px solid #5fa8ae;border-top:27px solid transparent}
+.chat .chatbox .chatform input[type="text"]{background-color:#ececec;box-shadow:inset 0 0 7px rgba(0,0,0,0.1);border-color:#a5a5a3}
+.chat .messages .message.sameuser{background-color:#ececec;border-color:#60a5ac}
+.chat .messages .message.destacado .avatar:after{background-image:url("/images/conferencia/staff.png")}
+.chat .messages .message.destacado .avatar img{border-color:#555452}
+.chat .messages .message .avatar img{border-color:#ececec}
+.chat .messages .message .mention{background-color:#5fa8ae;color:#fff;padding:0 3px;border-radius:3px}
+.chat .messages .message .responder{background-color:rgba(85,84,82,0.7)}
+.chat .messages .message .borrar{background-image:url("/images/conferencia/borrar.png")}
+#login .overlay{background-color:rgba(228,227,225,0.5)}
+#login .panel{background-color:#f7f7f5;box-shadow:4px 4px 0 #888;}
+#login .panel a{color:#fff}
+.emoticon{background-image:url("/images/conferencia/emoticons.png")}
