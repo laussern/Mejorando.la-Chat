@@ -13,6 +13,9 @@ npm install -d
 
 Renombrar config.sample.json a config.json y configurar las opciones
 
+Key de Twitter
+Key de Facebook
+
 ## Correr
 
 ```
